@@ -1,0 +1,104 @@
+/* 
+main color: #d14d4e
+font cho header font-family: 'Secular One', sans-serif;
+*/
+
+body{
+    margin: 0;
+    padding: 0;
+}
+header{
+    background-color:#00cec9;
+    font-family: 'Secular One', sans-serif;
+    display: flex;
+    height:7rem;
+}
+.img-logo{
+    height: 3rem;
+    width: 3rem;
+    margin-left: 5rem;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+.div-namepage{
+    line-height: 7rem;
+    font-weight: bolder;
+    color: white;
+    font-size: 2rem;
+}
+.menu-bar{
+    margin-left: 5rem;
+    line-height: 7rem;
+}
+.menu-bar-btn{
+    margin-left: 1rem;
+    text-decoration: none;
+    font-size: 1.25rem;
+    font-family: 'Patrick Hand', cursive;
+    color: white;
+}
+.menu-bar-btn:hover{
+    color: #025252;
+}
+.search-bar{
+    margin-left: 3rem;
+    line-height: 7rem;
+}
+.search-btn{
+    height: 30px;
+    width: 30px;
+    border: none;
+    border-radius: 4rem;
+    -webkit-transition: width .40s ease-in-out;
+    transition: width .40s ease-in-out;
+}
+.search-btn:focus{
+    width: 200px;
+}
+.account-bar{
+    margin-left: 1rem;
+    line-height: 7rem;
+}
+.account-bar-btn{
+    text-decoration: none;
+    font-size: 1.25rem;
+    font-family: 'Patrick Hand', cursive;
+    color: white;
+}
+
+main{
+    margin-left: 2rem;
+}
+.main-dstruyen{
+    margin-top: 4rem;
+}
+.main-dstruyen-detail{
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 2.5rem;
+}
+.main-dstruyen-title{
+    font-family: 'Merriweather', serif;
+    font-weight: 600;
+    font-size: 20px;
+    display: inline;
+}
+.main-dstruyen-detail-a{
+    text-decoration: none;
+    color: black;
+}
+.main-dstruyen-img{
+    margin-top: 0.2rem;
+    margin-right: 2.35rem;
+    width: 13rem;
+    height: 18rem;
+}
+.main-dstruyen-detail-tentruyen{
+    font-family: 'Merriweather', serif;
+    cursor: context-menu;
+    text-align: center;
+    width: 13rem;
+    overflow: hidden;
+    font-size: 16px;
+    font-weight: 600;
+}
