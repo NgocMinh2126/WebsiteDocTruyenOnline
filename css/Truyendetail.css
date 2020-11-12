@@ -1,0 +1,412 @@
+body{
+    margin: 0;
+    padding: 0;
+}
+body::-webkit-scrollbar{
+    display: none;
+}
+/* PHAN HEADER*/
+header{
+    background-color:#00cec9;
+    font-family: 'Secular One', sans-serif;
+    display: flex;
+    height:7rem;
+}
+.img-logo{
+    height: 3rem;
+    width: 3rem;
+    margin-left: 5rem;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+.div-namepage{
+    line-height: 7rem;
+    font-weight: bolder;
+    color: white;
+    font-size: 2rem;
+}
+.menu-bar{
+    margin-left: 5rem;
+    line-height: 7rem;
+}
+.menu-bar-btn{
+    margin-left: 1rem;
+    text-decoration: none;
+    font-size: 1.25rem;
+    font-family: 'Patrick Hand', cursive;
+    color: white;
+}
+.menu-bar-btn:hover{
+    color: #025252;
+}
+.search-bar{
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-left: 3rem;
+    border-radius: 14px;
+    background: #f3e9e9;
+    height: 30px;
+    box-sizing: border-box;
+}
+.search-btn{
+    height: 30px;
+    width: 30px;
+    border: none;
+    outline: none;
+    background: none;
+    border-left: 1px #c3c3c3 solid;
+}
+.search-btn-input{
+    background: none;
+    outline: none;
+    border: none;    
+    color:#386570;
+    margin-left: 8px;
+}
+.account-bar{
+    margin-left: 1rem;
+    line-height: 7rem;
+}
+.account-bar-btn{
+    text-decoration: none;
+    font-size: 1.25rem;
+    font-family: 'Patrick Hand', cursive;
+    color: white;
+}
+/*PHAN MAIN*/
+.main-duongdan{
+    font-size: 1.25rem;
+    color:rgb(240, 140, 140);
+    font-weight: 700;
+    margin: 5px 5px;
+}
+.main-duongdan>a{
+    text-decoration: none;
+    color: red;
+}
+.main-duongdan>a:hover{
+    color: black;
+}
+.main-detail{
+    display: flex;
+    margin-top: 2rem;
+}
+.anh-tentruyen{
+    margin-left: 1vw;
+    display: flex;
+    flex-direction: column;
+    width: 13rem;
+    text-align: center;
+    font-family: 'Pacifico', cursive;
+    cursor: context-menu;
+    font-size: 20px;
+    font-weight: 600;
+}
+.anh-tentruyen>img{
+    width: 13rem;
+    height: 18rem;
+}
+
+/*MAIN-OVERVIEW*/
+.main-overview{
+    padding: 10px 10px 10px 10px;
+    margin-left: 3vw;
+    height: 18rem;
+    width: 28vw;
+}
+.main-overview-like{
+    color: #5ac4d6;
+    margin-bottom: 20px;
+}
+.main-overview-flex{
+    margin-bottom: 5px;
+    display: flex;
+    cursor: context-menu;
+}
+.main-overview-title{
+    font-size: 18px;
+    font-weight: 700;
+    width: 10vw;
+}
+.main-overview-info{
+    margin-left: 30px;
+    color: #135961;
+    font-weight: 300;
+    font-size: 18px;
+    width: 17vw;
+}
+.main-overview-btn{
+    height: 2.5rem;
+    width: 7rem;
+    margin-top: 30px;
+    border-radius: 8px;
+    background-color: #34c2d1;
+    font-family: 'Patrick Hand', cursive;
+}
+.main-overview-btn>a{
+    text-decoration: none;
+    color: white;
+    line-height: 2.5rem;
+    margin-left: 8px;
+    font-size: 20px;
+}
+.main-overview-btn:hover{
+    background-color: white;
+}
+.main-overview-btn:hover a{
+    color: #053a47;
+}
+
+/*MAIN-SUMMARY*/
+.main-summary{
+    margin-left: 1vw;
+    margin-right: 1vw;
+    width: 48vw;
+    cursor: context-menu;
+}
+.main-summary-title{
+    font-family: 'Pacifico', cursive;
+    font-size: 20px;
+    color:#5ac4d6;
+}
+.main-summary-title>i{
+    color: #5ac4d6;
+}
+.main-summary-noidung{
+    color: #71a5ad;
+    height: 10vw;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    transition: height 0.8s;
+}
+.main-summary-noidung-more{
+    height: 15vw;
+    transition: height 0.8s;    
+}
+#summary-xemthem-btn{
+    margin-top: 10px;
+    border: none;
+    outline: none;
+    background-color: transparent;
+    width: 7rem;
+    height: 2.5rem;
+    font-family: 'Patrick Hand', cursive;
+    font-size: 18px;
+    font-weight: 600;
+    color: #4e7278;
+    margin-left: 20vw;
+}
+#summary-xemthem-btn:hover{
+    color: #34c2d1;
+}
+
+/*Phan mở rộng*/
+.main-morong{
+    margin-top: 3rem;
+    display: flex;
+}
+.main-morong-dschuong{
+    margin-left: 3vw;
+    width: 60vw;
+}
+.main-morong-title{
+    padding: 10px 10px 10px 10px;
+    font-family: 'Merriweather', serif;
+    font-weight: 600;
+    font-size: 20px;
+    border-bottom: 1.5px #c3c3c3 solid;
+    margin-bottom: 2rem;
+}
+.main-morong-title>i{
+    color: #34c2d1;
+}
+.sapxepchuong-btn{
+    margin-left: 20px;
+    border: none;
+    outline: none;
+    background-color: transparent;
+    font-size: 20px;
+}
+.main-morong-chuong{
+    padding-left: 2rem ;
+    border-left: 3px solid #03adaa;
+    height: 2rem;
+    line-height: 2rem;
+}
+.chuong-contain{
+    display: flex;
+    border-bottom: 1px solid #a1c2c1;
+    width: 55vw;
+    justify-content: space-between;
+    color: #0f4d4b;
+}
+.chuong-contain>a{
+    text-decoration: none;
+    font-size: 20px;
+    color: #0f4d4b;
+}
+.chuong-contain>a:hover{
+    color: #34c2d1;
+}
+.sapxepchuong-btn:hover{
+    color:#34c2d1 ;
+}
+/*Phan rong the loai*/
+.main-morong-theloai{
+    margin-right: 3vw;
+    width: 35vw;
+    margin-left: 2vw;
+}
+.main-morong-theloai-title{
+    margin-left: auto;
+    margin-right: auto;
+    clip-path: polygon(0% 0%, 100% 0%, 100% 75%, 48% 75%, 27% 100%, 27% 75%, 0% 75%);
+    font-family: 'Merriweather', serif;
+    font-size: 20px;
+    font-weight: 700;
+    text-align: center;
+    line-height: 2rem;
+    background-color:#33c8f5;
+    width: 8rem;
+    height: 3rem;
+}
+.main-morong-theloai-container{
+    display: flex;
+    justify-content: space-evenly;
+}
+.main-morong-theloai-detail{
+    display: flex;
+    flex-direction: column;
+}
+.theloai-btn{
+    margin-bottom: 1rem;
+    text-decoration: none;
+    color: black;
+    font-size: 17px;
+}
+.theloai-btn:hover{
+    color:#33c8f5;
+}
+
+.gioithieu-container-flex{
+    margin-left: 2rem;
+    border: black 1px solid;
+    height: 25rem;
+    width: 20rem;
+    display: flex;
+    flex-direction: column;
+}
+.gioithieu-detail{
+    margin-top: 1rem;
+    display: flex;
+}
+.gioithieu-detail-tentruyen{
+    margin-left: 5px;
+    text-decoration: none;
+    color: red;
+    cursor: context-menu;
+    font-family: 'Pacifico', cursive;
+    flex-wrap: wrap;
+}
+.gioithieu-detail-theloai{
+    margin-left: 5px;
+    margin-bottom: 10px;
+    color: black;
+    cursor: context-menu;
+    flex-wrap: wrap;
+}
+.gioithieu-detail-chuonghot{
+    margin: 5px 5px;
+    width: 6rem;
+    height: 1.5rem;
+    background-color:#57d8eb;
+    text-align: center;
+    line-height: 1.5rem;
+    border-radius: 8px;
+}
+.gioithieu-detail-img>img{
+    margin-left: 1rem;
+    width: 7rem;
+    height: 10rem;
+}
+
+/*PHAN FOOTER*/
+footer{
+    margin-top: 3rem;
+    border-top: 1px solid #c3c3c3;
+    height: 15vw;
+}
+.footer-lienhe{
+    display: flex;
+    margin-left: 42.5vw;
+    margin-right: 42.5vw;
+    width: 15vw;
+    justify-content: space-between;
+}
+.footer-lienhe-btn{
+    margin-top: 1rem;
+    color: #00cec9;
+    font-size: 2rem;
+    position: relative;
+}
+.footer-lienhe-btn-tooltip{
+    top: 100%;
+    left: 50%;
+    width: 4rem;
+    height: 1.5rem;
+    margin-left: -2rem;
+    position: absolute;
+    background-color: #57d8eb;
+    text-align: center;
+    line-height: 1.5rem;
+    color: black;
+    font-size: 14px;
+    border-radius: 5px;
+    z-index: 1;
+    visibility: hidden;
+}
+.footer-lienhe-btn:hover{    
+    color:  #025252;     
+}
+.footer-lienhe-btn:hover .footer-lienhe-btn-tooltip{
+    visibility: visible;   
+}
+.footer-menu{
+    display: flex;
+    margin-top: 2rem;
+    margin-left: 25vw;
+    margin-right: 25vw;
+    width: 50vw;
+}
+.footer-menu-btn{
+    text-decoration: none;
+    color: black;
+    font-family: 'Patrick Hand', cursive;
+    font-size: 20px;
+    text-align: center;
+    width: 10vw;
+    border-right: 2px#c3c3c3 solid ;
+}
+.footer-menu-btn-special{
+    text-decoration: none;
+    color: black;
+    font-family: 'Patrick Hand', cursive;
+    font-size: 20px;
+    text-align: center;
+    width: 17vw;
+}
+.footer-menu-btn:hover{
+    color:  #33c8f5;
+}
+.footer-menu-btn-special:hover{
+    color:  #33c8f5;
+}
+.footer-banquyen{
+    font-family: 'Patrick Hand', cursive;
+    font-size: 12px;
+    color: #c3c3c3;
+    margin-top: 2rem;
+    margin-right: 41vw;
+    margin-left: 41vw;
+    cursor: context-menu;
+}

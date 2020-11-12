@@ -1,3 +1,16 @@
+<?php
+    $conn=mysqli_connect('localhost','ngocminh2621','1','tmtmanga');
+    if(!$conn){
+        echo "fail to connect".mysqli_connect_error();
+    }else{
+        $sqlTruyen="SELECT * FROM Truyen where LoaiTruyen='0'";
+        $resultTruyen=mysqli_query($conn,$sqlTruyen);
+        $Truyenarr=mysqli_fetch_all($resultTruyen,MYSQLI_ASSOC);
+        mysqli_free_result($resultTruyen);
+        mysqli_close($conn);
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,9 +30,9 @@
         <img src="./image/mtlogo7.png" class="img-logo">
         <div class="div-namepage">MT Manga</div>
         <div class="menu-bar">
-            <a href="" class="menu-bar-btn">Trang chủ</a>
-            <a href="" class="menu-bar-btn"> Truyện tranh</a>
-            <a href="" class="menu-bar-btn">Tiểu thuyết</a>
+            <a href="MTmanga.html" class="menu-bar-btn">Trang chủ</a>
+            <a href="Truyentranh.html" class="menu-bar-btn"> Truyện tranh</a>
+            <a href="Tieuthuyet.html" class="menu-bar-btn">Tiểu thuyết</a>
             <a href="" class="menu-bar-btn">Sáng tác</a>
             <a href="" class="menu-bar-btn">Nạp xu</a>
         </div>
@@ -37,27 +50,27 @@
                 <div class="left-slide-banner-title">Mới cập nhật</div>
                 <div class="new-banner">
                     <div class="new-banner-chapter">Chương 20</div>
-                    <a href="#" class="new-banner-img"><img src="./imgTruyen/banner4.png"></a>
+                    <a href="#" class="new-banner-img"><img src="./imgBanner/banner7.jpg"></a>
                     <div class="new-banner-name">Tổng tài tại thượng</div>
                 </div>
                 <div class="new-banner">
                     <div class="new-banner-chapter">Chương 45</div>
-                    <a href="#" class="new-banner-img"><img src="./imgTruyen/banner5.png"></a>
-                    <div class="new-banner-name">Vương gia không thể trêu</div>
+                    <a href="#" class="new-banner-img"><img src="./imgBanner/bannerTraihusitinh.png"></a>
+                    <div class="new-banner-name">Trai hư si tình</div>
                 </div>
             </div>
             <div class="slide">
                 <button class="main-slide-btn" id="pre-btn"><i class="fas fa-arrow-left"></i></button>
                 <button class="main-slide-btn" id="next-btn"><i class="fas fa-arrow-right"></i></button>
                 <div class="main-slide-img">
-                    <a href="#" class="main-slide-a"><img src="./imgTruyen/sliderTiendetrove.PNG" id="last-img"></a>
-                    <a href="#" class="main-slide-a"><img src="./imgTruyen/sliderBadaotongtaimuonduocom.PNG"></a>
-                    <a href="#" class="main-slide-a"><img src="./imgTruyen/sliderBonvuongphicothandang.PNG">  </a>
-                    <a href="#" class="main-slide-a"><img src="./imgTruyen/sliderTaxuyenkhongthanhhoanghaudocac.PNG"></a>
-                    <a href="#" class="main-slide-a"><img src="./imgTruyen/sliderNguoiphunubiboroi.PNG"></a>
-                    <a href="#" class="main-slide-a"><img src="./imgTruyen/sliderBobimsuacuatienma.PNG"></a>
-                    <a href="#" class="main-slide-a"><img src="./imgTruyen/sliderTiendetrove.PNG"></a>
-                    <a href="#" class="main-slide-a"><img src="./imgTruyen/sliderBadaotongtaimuonduocom.PNG" id="first-img"></a>
+                    <a href="#" class="main-slide-a"><img src="./imgBanner/sliderTiendetrove.PNG" id="last-img"></a>
+                    <a href="#" class="main-slide-a"><img src="./imgBanner/sliderBadaotongtaimuonduocom.PNG"></a>
+                    <a href="#" class="main-slide-a"><img src="./imgBanner/sliderBonvuongphicothandang.PNG">  </a>
+                    <a href="#" class="main-slide-a"><img src="./imgBanner/sliderTaxuyenkhongthanhhoanghaudocac.PNG"></a>
+                    <a href="#" class="main-slide-a"><img src="./imgBanner/sliderNguoiphunubiboroi.PNG"></a>
+                    <a href="#" class="main-slide-a"><img src="./imgBanner/sliderBobimsuacuatienma.PNG"></a>
+                    <a href="#" class="main-slide-a"><img src="./imgBanner/sliderTiendetrove.PNG"></a>
+                    <a href="#" class="main-slide-a"><img src="./imgBanner/sliderBadaotongtaimuonduocom.PNG" id="first-img"></a>
                 </div>
             </div>
             <div class="right-slide">
@@ -65,12 +78,12 @@
                     <div class="right-slide-banner-title">Mới cập nhật</div>
                     <div class="new-banner">
                         <div class="new-banner-chapter">Chương 20</div>
-                        <a href="#" class="new-banner-img"><img src="./imgTruyen/banner8.jpg"></a>
+                        <a href="#" class="new-banner-img"><img src="./imgBanner/banner8.jpg"></a>
                         <div class="new-banner-name">Mẫu thân ta không dễ chọc</div>
                     </div>
                     <div class="new-banner">
                         <div class="new-banner-chapter">Chương 45</div>
-                        <a href="#" class="new-banner-img"><img src="./imgTruyen/banner7.jpg"></a>
+                        <a href="#" class="new-banner-img"><img src="./imgBanner/banner3.png"></a>
                         <div class="new-banner-name">Hào môn thiên giới tiền thê</div>
                     </div>                    
                 </div>
@@ -82,46 +95,12 @@
                 <a href="#" class="xemthem-btn">Xem thêm <i class="fas fa-angle-double-right"></i></a>
             </div>
             <div class="main-dstruyen-detail">
+                <?php foreach ($Truyenarr as $Truyen) {?>
                 <a href="#" class="main-dstruyen-detail-a">
-                    <img src="./imgTruyen/imgTongtaitaithuong.PNG" class="main-dstruyen-img">
-                    <div class="main-dstruyen-detail-tentruyen">Tổng tài tại thượng</div>
+                    <img src="<?php echo htmlspecialchars($Truyen['AnhBia'])?>" class="main-dstruyen-img">
+                    <div class="main-dstruyen-detail-tentruyen"><?php echo htmlspecialchars($Truyen['TenTruyen'])?></div>
                 </a>
-                <a href="#" class="main-dstruyen-detail-a">
-                    <img src="./imgTruyen/imgOangiangotngao.PNG" class="main-dstruyen-img">
-                    <div class="main-dstruyen-detail-tentruyen">Oan gia ngọt ngào</div>
-                </a>
-                <a href="#" class="main-dstruyen-detail-a">
-                    <img src="./imgTruyen/imgNhapcotnoanhon.PNG" class="main-dstruyen-img">
-                    <div class="main-dstruyen-detail-tentruyen">Nhập cốt noãn hôn</div>
-                </a>
-                <a href="#" class="main-dstruyen-detail-a">
-                    <img src="./imgTruyen/imgHaomonthiengioitienthe.PNG" class="main-dstruyen-img">
-                    <div class="main-dstruyen-detail-tentruyen">Hào môn thiên giới tiền thê</div>
-                </a>
-                <a href="#" class="main-dstruyen-detail-a">
-                    <img src="./imgTruyen/imgTongtaiDaddysieuquyenluc.PNG" class="main-dstruyen-img">
-                    <div class="main-dstruyen-detail-tentruyen">Tổng tài Daddy siêu quyền lực</div>
-                </a>
-                <a href="#" class="main-dstruyen-detail-a">
-                    <img src="./imgTruyen/imgDamhoaanhmong.PNG" class="main-dstruyen-img">
-                    <div class="main-dstruyen-detail-tentruyen">Đàm hoa ánh mộng</div>
-                </a>
-                <a href="#" class="main-dstruyen-detail-a">
-                    <img src="./imgTruyen/imgChocgianchutichtongtai.PNG" class="main-dstruyen-img">
-                    <div class="main-dstruyen-detail-tentruyen" >Chọc giận chủ tịch tổng tài</div>
-                </a>
-                <a href="#" class="main-dstruyen-detail-a">
-                    <img src="./imgTruyen/imgPhongkhoithuonglam.PNG" class="main-dstruyen-img">
-                    <div class="main-dstruyen-detail-tentruyen">Phong khởi thương lam</div>
-                </a>
-                <a href="#" class="main-dstruyen-detail-a">
-                    <img src="./imgTruyen/imgVuonggiasolonao.PNG" class="main-dstruyen-img">
-                    <div class="main-dstruyen-detail-tentruyen">Vương gia solo nào!</div>
-                </a>
-                <a href="#" class="main-dstruyen-detail-a">
-                    <img src="./imgTruyen/imgTaxuyenkhongthanhhoanghaudocac.PNG" class="main-dstruyen-img">
-                    <div class="main-dstruyen-detail-tentruyen">Ta xuyên không thành hoàng hậu độc ác</div>
-                </a>
+                <?php } ?>                
             </div>
         </div>        
         <div class="main-sukien">
@@ -129,11 +108,11 @@
             <button class="main-sukien-btn"id="main-sukien-left-btn"><i class="fas fa-chevron-left"></i></button>
             <button class="main-sukien-btn"id="main-sukien-right-btn"><i class="fas fa-chevron-right"></i></button>
             <div class="main-sukien-slide">
-                <a href="#" class="main-sukien-slide-img"><img src="./imgTruyen/bannersukiennoel.jpg" id="skien-last"></a>
-                <a href="#" class="main-sukien-slide-img"><img src="./imgTruyen/bannersinhnhat.jpg"></a>
-                <a href="#" class="main-sukien-slide-img"><img src="./imgTruyen/bannersukienthiviet.jpg"></a>
-                <a href="#" class="main-sukien-slide-img"><img src="./imgTruyen/bannersukiennoel.jpg"></a>
-                <a href="#" class="main-sukien-slide-img"><img src="./imgTruyen/bannersinhnhat.jpg" id="skien-first"></a>
+                <a href="#" class="main-sukien-slide-img"><img src="./imgBanner/bannersukiennoel.jpg" id="skien-last"></a>
+                <a href="#" class="main-sukien-slide-img"><img src="./imgBanner/bannersinhnhat.jpg"></a>
+                <a href="#" class="main-sukien-slide-img"><img src="./imgBanner/bannersukienthiviet.jpg"></a>
+                <a href="#" class="main-sukien-slide-img"><img src="./imgBanner/bannersukiennoel.jpg"></a>
+                <a href="#" class="main-sukien-slide-img"><img src="./imgBanner/bannersinhnhat.jpg" id="skien-first"></a>
             </div>
         </div>
         <div class="main-dstruyen">
@@ -283,9 +262,9 @@
                         </div>
                     </div>
                     <div class="container-flex">
-                        <a href="#" class="detail-truyen-img"><img src="./imgTruyen/sliderKehoachbotroncuaNienTieuTieu.PNG"></a>
+                        <a href="#" class="detail-truyen-img"><img src="./imgTieuthuyet/imgCovosieusao.PNG"></a>
                         <div class="container-flex-column">
-                            <a href="#" class="detail-truyen-name">Kế hoạch bỏ trốn của Niên Tiểu Tiểu</a>
+                            <a href="#" class="detail-truyen-name">Cô vợ siêu sao</a>
                             <div class="detail-truyen-info">
                                 <i class="fas fa-calendar"></i>
                                 Ngày ra mắt: 9/1/2021
@@ -351,7 +330,7 @@
                                 Chương 1
                             </div>
                             <div class="gioithieu-detail-chuonghot">
-                                    Chương 90
+                                Chương 90
                             </div>
                     </div>
                 </div>
