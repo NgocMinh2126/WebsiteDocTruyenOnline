@@ -3,7 +3,7 @@
     if(!$conn){
         echo "fail to connect".mysqli_connect_error();
     }else{
-        $sqlTruyen="SELECT * FROM Truyen where LoaiTruyen='0'";
+        $sqlTruyen="SELECT * FROM Truyen where LoaiTruyen='0' ORDER BY LuotLike desc";
         $resultTruyen=mysqli_query($conn,$sqlTruyen);
         $Truyenarr=mysqli_fetch_all($resultTruyen,MYSQLI_ASSOC);
         mysqli_free_result($resultTruyen);
@@ -95,7 +95,7 @@
                 <a href="#" class="xemthem-btn">Xem thêm <i class="fas fa-angle-double-right"></i></a>
             </div>
             <div class="main-dstruyen-detail">
-                <?php foreach ($Truyenarr as $Truyen) {?>
+                <?php for ($i=0;$i<10;$i++) { $Truyen=$Truyenarr[$i]?>
                 <a href="#" class="main-dstruyen-detail-a">
                     <img src="<?php echo htmlspecialchars($Truyen['AnhBia'])?>" class="main-dstruyen-img">
                     <div class="main-dstruyen-detail-tentruyen"><?php echo htmlspecialchars($Truyen['TenTruyen'])?></div>
