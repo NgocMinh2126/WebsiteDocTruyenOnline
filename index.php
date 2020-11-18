@@ -33,8 +33,6 @@
             <a href="MTmanga.html" class="menu-bar-btn">Trang chủ</a>
             <a href="Truyentranh.html" class="menu-bar-btn"> Truyện tranh</a>
             <a href="Tieuthuyet.html" class="menu-bar-btn">Tiểu thuyết</a>
-            <a href="" class="menu-bar-btn">Sáng tác</a>
-            <a href="" class="menu-bar-btn">Nạp xu</a>
         </div>
         <div class="search-bar">
              <input type="text" class="search-btn-input">

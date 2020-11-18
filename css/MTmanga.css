@@ -38,7 +38,7 @@ header{
     line-height: 7rem;
 }
 .menu-bar-btn{
-    margin-left: 1rem;
+    margin-left: 2rem;
     text-decoration: none;
     font-size: 1.25rem;
     font-family: 'Patrick Hand', cursive;
@@ -50,7 +50,7 @@ header{
 .search-bar{
     margin-top: auto;
     margin-bottom: auto;
-    margin-left: 3rem;
+    margin-left: 5rem;
     border-radius: 14px;
     background: #f3e9e9;
     height: 30px;
@@ -72,7 +72,7 @@ header{
     margin-left: 8px;
 }
 .account-bar{
-    margin-left: 1rem;
+    margin-left: 2rem;
     line-height: 7rem;
 }
 .account-bar-btn{
