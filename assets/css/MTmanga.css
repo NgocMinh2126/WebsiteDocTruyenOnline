@@ -289,20 +289,21 @@ main{
     line-height: 3vw;
     border-bottom: 1px solid #c3c3c3;
 }
-.main-moicapnhat-content-detail{
-    margin-top: 2rem;
+.main-moicapnhat-container{
+    margin-top: 1rem;
     display: flex;
     justify-content: space-evenly;
-    height: 16vw;
+    flex-wrap: wrap;
     width: 65vw;
 }
 .container-flex{
-    display: flex;  
+    margin-top: 1rem;
+    display: flex;
+    width: 30vw;  
 }
 .container-flex-column{
     display: flex;
     flex-direction: column;
-    width: 20vw;
 }
 .detail-truyen-name{
     margin-left: 5px;
@@ -397,14 +398,13 @@ main{
     cursor: context-menu;
     flex-wrap: wrap;
 }
-.gioithieu-detail-chuonghot{
-    margin: 5px 5px;
-    width: 6rem;
-    height: 1.5rem;
-    background-color:#57d8eb;
-    text-align: center;
-    line-height: 1.5rem;
-    border-radius: 8px;
+.gioithieu-detail-tacgia{
+    margin: 5px 10px;
+    cursor: context-menu;
+    color: #34b8c9;
+}
+.gioithieu-detail-tacgia>i{
+    color: #1c626b;
 }
 .gioithieu-detail-img>img{
     margin-left: 1rem;
