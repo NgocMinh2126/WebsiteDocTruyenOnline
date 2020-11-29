@@ -2,6 +2,8 @@
 require_once('controllers/base_controller.php');
 require_once('models/Truyen.php');
 require_once('models/TacGia.php');
+require_once('models/TheLoai.php');
+require_once('models/TheLoaiTruyen.php');
 
 class TruyenController extends BaseController
 {
@@ -23,5 +25,58 @@ class TruyenController extends BaseController
             'listTacGia'=>$listTacGia,
         ); //tuong tu object
         $this->render('index',$data);        
+    }
+    public function Truyentranh(){
+        $listTruyenTranh = Truyen::getTruyenTranh();
+        $listTheLoai=TheLoai::getTheLoai();
+        $data=array(
+            'listTruyenTranh'=>$listTruyenTranh,
+            'listTheLoai'=>$listTheLoai,
+        );
+        $this->render('Truyentranh',$data);
+    }
+    public function locTruyentranh($idTheLoai){
+        $listTruyenTranh = Truyen::getTruyenTranhByType($idTheLoai);
+        $listTheLoai=TheLoai::getTheLoai();
+        $data=array(
+            'listTruyenTranh'=>$listTruyenTranh,
+            'listTheLoai'=>$listTheLoai,
+        );
+        $this->render('Truyentranh',$data);
+    }
+    public function Tieuthuyet(){
+        $data=array('1');
+        $this->render('Tieuthuyet',$data);
+    }
+    public function Alltruyen(){
+        $listTheLoai= TheLoai::getTheLoai();
+        $listTruyen= Truyen::getTruyenMoi();
+        $data=array(
+            'listTheLoai'=>$listTheLoai,
+            'listTruyen'=>$listTruyen,
+        );
+        $this->render('Alltruyen',$data);
+    }
+    public function locAlltruyen($idTheLoai){
+        $listTheLoai= TheLoai::getTheLoai();
+        $listTruyen= Truyen::getTruyenByType($idTheLoai);
+        $data=array(
+            'listTheLoai'=>$listTheLoai,
+            'listTruyen'=>$listTruyen,
+        );
+        $this->render('Alltruyen',$data);
+    }
+    public function Truyendetail($idTruyen){        
+        $truyen = Truyen::getTruyenID($idTruyen);
+        $listTheLoai= TheLoai::getTheLoai();
+        $listTheLoaiTruyen= TheLoaiTruyen::getTheLoaiTruyen($idTruyen);
+        $listTacGia = TacGia::getTacGia();
+        $data=array(
+            'truyen'=>$truyen,
+            'listTacGia'=> $listTacGia,
+            'listTheLoai'=>$listTheLoai,
+            'listTheLoaiTruyen'=>$listTheLoaiTruyen,
+        );
+        $this->render('Truyendetail',$data);
     }
 }

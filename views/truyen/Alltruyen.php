@@ -11,7 +11,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Grandstander:wght@100&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/2b3f16036e.js" crossorigin="anonymous"></script>
     <link href="/TMTManga/assets/css/Truyentranh_Tieuthuyet.css" rel="stylesheet">
-    <title>MT Manga | Truyện tranh</title>
+    <title>MT Manga | Tất cả truyện</title>
 </head>
 
 <body>
@@ -32,58 +32,75 @@
         </div>
     </header>
     <main>
-        <div class="main-menu-title">Truyện tranh</div>
+        <div class="main-menu-title">Tất cả truyện</div>
         <div class="main-menu">
-            <a href="?controller=truyen&action=Truyentranh" class="main-menu-btn">Top hot nhất</a>
-            <a href="?controller=truyen&action=Truyentranh" class="main-menu-btn">Mới nhất</a>
+            <a href="#" class="main-menu-btn">Top hot nhất</a>
+            <a href="#" class="main-menu-btn">Mới nhất</a>
             <a href="#" class="main-menu-btn">Đã full</a>
             <?php if (count($listTheLoai) > 4) {
-                for ($i = 0; $i < 4; $i++) { $theloai=$listTheLoai[$i]; ?>
-                    <a href="?controller=truyen&action=Truyentranh&idTheLoai=<?php echo htmlspecialchars($theloai->idTheLoai)?>" class="main-menu-btn"><?php echo htmlspecialchars($theloai->tenTheLoai)?></a>
-            <?php } }else{
-                for($i=0;$i<count($listTheLoai);$i++){?>
-                    <a href="?controller=truyen&action=Truyentranh&idTheLoai=<?php echo htmlspecialchars($theloai->idTheLoai)?>" class="main-menu-btn"><?php echo htmlspecialchars($theloai->tenTheLoai)?></a>
-                <?php } }?>
+                for ($i = 0; $i < 4; $i++) {
+                    $theloai = $listTheLoai[$i]; ?>
+                    <a href="?controller=truyen&action=Alltruyen&idTheLoai=<?php echo htmlspecialchars($theloai->idTheLoai)?>" class="main-menu-btn"><?php echo htmlspecialchars($theloai->tenTheLoai) ?></a>
+                <?php }
+            } else {
+                for ($i = 0; $i < count($listTheLoai); $i++) {
+                    $theloai = $listTheLoai[$i]; ?>
+                    <a href="?controller&action=Alltruyen" class="main-menu-btn"><?php echo htmlspecialchars($theloai->tenTheLoai) ?></a>
+            <?php }
+            } ?>
             <div class="main-menu-theloai">
                 <div class="main-menu-theloai-title">Thêm <i class="fas fa-chevron-circle-right"></i></div>
                 <div class="main-menu-theloai-content">
-                    <?php if(count($listTheLoai)>4){
-                        for($i=4;$i<count($listTheLoai);$i++){
-                            $theloai=$listTheLoai[$i];?>
-                            <a href="?controller=truyen&action=Truyentranh&idTheLoai=<?php echo htmlspecialchars($theloai->idTheLoai) ?>" class="main-menu-theloai-btn"><?php echo htmlspecialchars($theloai->tenTheLoai) ?></a>
-                        <?php }
+                    <?php if (count($listTheLoai) > 4) {
+                        for ($i = 4; $i < count($listTheLoai); $i++) {
+                            $theloai = $listTheLoai[$i]; ?>
+                            <a href="?controller=truyen&action=Alltruyen&idTheLoai=<?php echo htmlspecialchars($theloai->idTheLoai)?>" class="main-menu-theloai-btn"><?php echo htmlspecialchars($theloai->tenTheLoai) ?></a>
+                    <?php }
                     } ?>
                 </div>
             </div>
         </div>
         <div class="main-dstruyen">
-            <?php if(count($listTruyenTranh)>15){
-                for($i=0;$i<15;$i++){
-                    $truyen=$listTruyenTranh[$i]; ?>
-                    <a class="main-dstruyen-truyen" href="?controller=truyen&action=Truyendetail&idTruyen=<?php echo htmlspecialchars($truyen->idTruyen)?>">
+            <?php if(count($listTruyen)>15) {for ($i = 0; $i < 15; $i++) {
+                $truyen = $listTruyen[$i]; ?>
+                <a class="main-dstruyen-truyen" href="?controller=truyen&action=Truyendetail&idTruyen=<?php echo htmlspecialchars($truyen->idTruyen) ?>">
+                    <img src="<?php echo htmlspecialchars($truyen->anhBia) ?>">
+                    <div class="main-dstruyen-tentruyen-ten"><?php echo htmlspecialchars($truyen->tenTruyen) ?></div>
+                    <span class="main-dstruyen-tentruyen-span"><?php echo htmlspecialchars($truyen->tenTruyen) ?></span>
+                    <div class="main-dstruyen-truyen-like">
+                        <i class="fas fa-thumbs-up"></i><?php echo htmlspecialchars($truyen->luotLike) ?>
+                    </div>
+                    <div class="main-dstruyen-loaitruyen">
+                        <?php if ($truyen->loaiTruyen == 0) {
+                            echo htmlspecialchars("Truyện tranh");
+                        } else {
+                            echo htmlspecialchars("Tiểu thuyết");
+                        } ?>
+                    </div>
+                </a>
+            <?php }}else{
+                for($i=0;$i<count($listTruyen);$i++){
+                    $truyen = $listTruyen[$i]; ?>
+                    <a class="main-dstruyen-truyen" href="?controller=truyen&action=Truyendetail&idTruyen=<?php echo htmlspecialchars($truyen->idTruyen) ?>">
                         <img src="<?php echo htmlspecialchars($truyen->anhBia) ?>">
                         <div class="main-dstruyen-tentruyen-ten"><?php echo htmlspecialchars($truyen->tenTruyen) ?></div>
                         <span class="main-dstruyen-tentruyen-span"><?php echo htmlspecialchars($truyen->tenTruyen) ?></span>
                         <div class="main-dstruyen-truyen-like">
-                            <i class="fas fa-thumbs-up"></i><?php echo htmlspecialchars($truyen->luotLike)?>
+                            <i class="fas fa-thumbs-up"></i><?php echo htmlspecialchars($truyen->luotLike) ?>
                         </div>
-                    </a>             
-            <?php }}else {
-                for($i=0;$i<count($listTruyenTranh);$i++){
-                    $truyen=$listTruyenTranh[$i]; ?>
-                    <a class="main-dstruyen-truyen" href="?controller=truyen&action=Truyendetail&idTruyen=<?php echo htmlspecialchars($truyen->idTruyen)?>">
-                        <img src="<?php echo htmlspecialchars($truyen->anhBia) ?>">
-                        <div class="main-dstruyen-tentruyen-ten"><?php echo htmlspecialchars($truyen->tenTruyen) ?></div>
-                        <span class="main-dstruyen-tentruyen-span"><?php echo htmlspecialchars($truyen->tenTruyen) ?></span>
-                        <div class="main-dstruyen-truyen-like">
-                            <i class="fas fa-thumbs-up"></i><?php echo htmlspecialchars($truyen->luotLike)?>
+                        <div class="main-dstruyen-loaitruyen">
+                            <?php if ($truyen->loaiTruyen == 0) {
+                                echo htmlspecialchars("Truyện tranh");
+                            } else {
+                                echo htmlspecialchars("Tiểu thuyết");
+                            } ?>
                         </div>
-                    </a>   
-            <?php }} ?>
+                    </a>
+                <?php } } ?>
         </div>
         <div class="chuyentrang-container">
             <button class="chuyentrang-btn hover" id="trangtruoc-btn">Trang trước</button>
-            <button class="chuyentrang-btn hover"id="trangsau-btn">Trang sau</button>
+            <button class="chuyentrang-btn hover" id="trangsau-btn">Trang sau</button>
         </div>
     </main>
     <footer>
@@ -124,8 +141,8 @@
             trangtruoc_btn.classList.remove('hover');
         }
         trangtruoc_btn.disabled = true;
-        <?php for ($i = 0; $i < count($listTruyenTranh); $i++) {
-            $tt = $listTruyenTranh[$i]; ?>
+        <?php for ($i = 0; $i < count($listTruyen); $i++) {
+            $tt = $listTruyen[$i]; ?>
             truyen[<?php echo ($i) ?>] = {
                 idTruyen: <?php echo ($tt->idTruyen) ?>,
                 tenTruyen: '<?php echo ($tt->tenTruyen) ?>',
@@ -166,6 +183,12 @@
             if (tranghientai < sotrang - 1) {
                 if (max < truyen.length) {
                     for (let i = min; i < max; i++) {
+                        var loaiTruyen;
+                        if (truyen[i].loaiTruyen == 0) {
+                            loaiTruyen = "Truyện tranh";
+                        } else {
+                            loaiTruyen = "Tiểu thuyết";
+                        }
                         main_dstruyen.innerHTML += `
                     <a class="main-dstruyen-truyen" href="?controller=truyen&action=Truyendetail&idTruyen=${truyen[i].idTruyen}">
                         <img src="${truyen[i].anhBia}">
@@ -176,6 +199,7 @@
                         <div class="main-dstruyen-truyen-like">
                             <i class="fas fa-thumbs-up"></i>${truyen[i].luotLike}
                         </div>
+                        <div class="main-dstruyen-loaitruyen"> ${loaiTruyen}</div>
                     </a>
                     `
                     }
@@ -184,6 +208,12 @@
                 }
             } else if (tranghientai == sotrang - 1) {
                 for (let i = min; i < truyen.length; i++) {
+                    var loaiTruyen;
+                    if (truyen[i].loaiTruyen == 0) {
+                        loaiTruyen = "Truyện tranh";
+                    } else {
+                        loaiTruyen = "Tiểu thuyết";
+                    }
                     main_dstruyen.innerHTML += `
                     <a class="main-dstruyen-truyen" href="?controller=truyen&action=Truyendetail&idTruyen=${truyen[i].idTruyen}">
                         <img src="${truyen[i].anhBia}">
@@ -194,6 +224,7 @@
                         <div class="main-dstruyen-truyen-like">
                             <i class="fas fa-thumbs-up"></i>${truyen[i].luotLike}
                         </div>
+                        <div class="main-dstruyen-loaitruyen"> ${loaiTruyen}</div>
                     </a>
                     `
                 }
@@ -217,6 +248,12 @@
             var max = tranghientai * 15;
             if (tranghientai > 1) {
                 for (let i = min; i < max; i++) {
+                    var loaiTruyen;
+                    if (truyen[i].loaiTruyen == 0) {
+                        loaiTruyen = "Truyện tranh";
+                    } else {
+                        loaiTruyen = "Tiểu thuyết";
+                    }
                     main_dstruyen.innerHTML += `
                     <a class="main-dstruyen-truyen" href="?controller=truyen&action=Truyendetail&idTruyen=${truyen[i].idTruyen}">
                         <img src="${truyen[i].anhBia}">
@@ -227,11 +264,17 @@
                         <div class="main-dstruyen-truyen-like">
                             <i class="fas fa-thumbs-up"></i>${truyen[i].luotLike}
                         </div>
+                        <div class="main-dstruyen-loaitruyen"> ${loaiTruyen}</div>
                     </a>`
                 }
             } else if (tranghientai == 1) {
                 for (let i = 0; i < max; i++) {
                     var loaiTruyen;
+                    if (truyen[i].loaiTruyen == 0) {
+                        loaiTruyen = "Truyện tranh";
+                    } else {
+                        loaiTruyen = "Tiểu thuyết";
+                    }
                     main_dstruyen.innerHTML += `
                     <a class="main-dstruyen-truyen" href="?controller=truyen&action=Truyendetail&idTruyen=${truyen[i].idTruyen}">
                         <img src="${truyen[i].anhBia}">
@@ -242,6 +285,7 @@
                         <div class="main-dstruyen-truyen-like">
                             <i class="fas fa-thumbs-up"></i>${truyen[i].luotLike}
                         </div>
+                        <div class="main-dstruyen-loaitruyen"> ${loaiTruyen}</div>
                     </a>`
                 }
                 if (trangtruoc_btn.classList.contains("hover") == true) {

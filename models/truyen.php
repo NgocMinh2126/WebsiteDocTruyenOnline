@@ -65,7 +65,7 @@
             $this->anhBia=$bia;
             $this->idTacGia=$tacgia;
             $this->tinhTrang=$tinhtrang;
-            $this->loaitruyen=$loai;
+            $this->loaiTruyen=$loai;
             $this->ngayDang=$ngay;
         }
         static function all(){
@@ -90,6 +90,29 @@
             }
             return $list;
         }
+        static function getTruyenByType($idTheLoai){
+            $list=[];
+            $db=DB::getInstance();
+            $query= $db->query('SELECT *FROM truyen WHERE IDTruyen in(SELECT IDTruyen FROM theloaitruyen WHERE IDTheLoai= '.$idTheLoai.')');
+            foreach($query-> fetchAll() as $item){
+                $tr= new Truyen($item['IDTruyen'], $item['TenTruyen'], $item['MoTa'], $item['SoChuong'],$item['LuotLike'], $item['AnhBia'],$item['TinhTrang'],$item['IDTacGia'],$item['LoaiTruyen'],$item['NgayDang']);
+                $list[] = $tr;
+            }
+            return $list;
+        }
+        //lay truyen co the loai la the $idTheloai
+        static function getTruyenTranhByType($idTheLoai){
+            $list=[];
+            $db=DB::getInstance();
+            $query=$db->query("SELECT * FROM truyen WHERE LoaiTruyen=0 AND IDTruyen in(
+                SELECT IDTruyen FROM theloaitruyen WHERE IDTheLoai=$idTheLoai
+            )");
+            foreach($query->fetchAll() as $item){
+                $tr= new Truyen($item['IDTruyen'], $item['TenTruyen'], $item['MoTa'], $item['SoChuong'],$item['LuotLike'], $item['AnhBia'],$item['TinhTrang'],$item['IDTacGia'],$item['LoaiTruyen'],$item['NgayDang']);
+                $list[]=$tr;
+            }
+            return $list;
+        }
         static function getTieuThuyet(){
             $list=[];
             $db=DB::getInstance();
@@ -110,5 +133,12 @@
             }
             return $listTruyenMoi;
         }
+        static function getTruyenID($idTruyen){            
+            $db=DB::getInstance();
+            $query=$db->query("SELECT *FROM truyen WHERE IDTruyen=$idTruyen");
+            $item=$query->fetch();
+            $truyen= new Truyen($item['IDTruyen'], $item['TenTruyen'], $item['MoTa'], $item['SoChuong'],$item['LuotLike'], $item['AnhBia'],$item['TinhTrang'],$item['IDTacGia'],$item['LoaiTruyen'],$item['NgayDang']);
+            return $truyen;
+        }        
     }    
 ?>

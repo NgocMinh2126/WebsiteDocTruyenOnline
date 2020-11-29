@@ -20,8 +20,8 @@
         <div class="div-namepage">MT Manga</div>
         <div class="menu-bar">
             <a href="index.php" class="menu-bar-btn">Trang chủ</a>
-            <a href="Truyentranh.php" class="menu-bar-btn"> Truyện tranh</a>
-            <a href="Tieuthuyet.php" class="menu-bar-btn">Tiểu thuyết</a>
+            <a href="?controller=truyen&action=Truyentranh" class="menu-bar-btn"> Truyện tranh</a>
+            <a href="?controller=truyen&action=Tieuthuyet" class="menu-bar-btn">Tiểu thuyết</a>
         </div>
         <div class="search-bar">
             <input type="text" class="search-btn-input">
@@ -79,12 +79,12 @@
         <div class="main-dstruyen">
             <div class="main-dstruyen-container">
                 <div class="main-dstruyen-title">Hot nhất- Truyện tranh</div>
-                <a href="#" class="xemthem-btn">Xem thêm <i class="fas fa-angle-double-right"></i></a>
+                <a href="?controller=truyen&action=Truyentranh" class="xemthem-btn">Xem thêm <i class="fas fa-angle-double-right"></i></a>
             </div>
             <div class="main-dstruyen-detail">
                 <?php for ($i = 0; $i < 10; $i++) {
                     $Truyen = $listTruyenTranh[$i] ?>
-                    <a href="#" class="main-dstruyen-detail-a">
+                    <a href="?controller=truyen&action=Truyendetail&idTruyen=<?php echo htmlspecialchars($Truyen->idTruyen)?>" class="main-dstruyen-detail-a">
                         <img src="<?php echo htmlspecialchars($Truyen->anhBia) ?>" class="main-dstruyen-img">
                         <div class="main-dstruyen-detail-tentruyen"><?php echo htmlspecialchars($Truyen->tenTruyen) ?></div>
                     </a>
@@ -106,12 +106,12 @@
         <div class="main-dstruyen">
             <div class="main-dstruyen-container">
                 <div class="main-dstruyen-title">Tiểu thuyết siêu hot</div>
-                <a href="#" class="xemthem-btn">Xem thêm <i class="fas fa-angle-double-right"></i></a>
+                <a href="?controller=truyen&action=Tieuthuyet" class="xemthem-btn">Xem thêm <i class="fas fa-angle-double-right"></i></a>
             </div>
             <div class="main-dstruyen-detail">
                 <?php for ($i = 0; $i < 10; $i++) {
                     $Truyen = $listTieuThuyet[$i] ?>
-                    <a href="#" class="main-dstruyen-detail-a">
+                    <a href="?controller=truyen&action=Truyendetail&idTruyen=<?php echo htmlspecialchars($Truyen->idTruyen) ?>" class="main-dstruyen-detail-a">
                         <img src="<?php echo htmlspecialchars($Truyen->anhBia) ?>" class="main-dstruyen-img">
                         <div class="main-dstruyen-detail-tentruyen"><?php echo htmlspecialchars($Truyen->tenTruyen) ?></div>
                     </a>
@@ -125,9 +125,9 @@
                     <?php for ($i = 0; $i < 6; $i++) {
                         $truyenMoi = $listTruyenMoi[$i] ?>
                         <div class="container-flex">
-                            <a href="#" class="detail-truyen-img"><img src="<?php echo htmlspecialchars($truyenMoi->anhBia) ?>"></a>
+                            <a href="?controller=truyen&action=Truyendetail&idTruyen=<?php echo htmlspecialchars($truyenMoi->idTruyen)?>" class="detail-truyen-img"><img src="<?php echo htmlspecialchars($truyenMoi->anhBia) ?>"></a>
                             <div class="container-flex-column">
-                                <a href="#" class="detail-truyen-name"><?php echo htmlspecialchars($truyenMoi->tenTruyen) ?></a>
+                                <a href="?controller=truyen&action=Truyendetail&idTruyen=<?php echo htmlspecialchars($truyenMoi->idTruyen)?>" class="detail-truyen-name"><?php echo htmlspecialchars($truyenMoi->tenTruyen) ?></a>
                                 <div class="detail-truyen-info">
                                     <i class="fas fa-calendar"></i>
                                     Ngày ra mắt: <?php echo htmlspecialchars($truyenMoi->ngayDang) ?>
@@ -145,7 +145,7 @@
                     <?php } ?>
                 </div>
                 <div class="main-moicapnhat-content-btn">
-                    <a href="#" class="xemthem-btn">Xem thêm <i class="fas fa-angle-double-right"></i></a>
+                    <a href="?controller=truyen&action=Alltruyen" class="xemthem-btn">Xem thêm <i class="fas fa-angle-double-right"></i></a>
                 </div>
             </div>
             <div class="main-moicapnhat-topic">
@@ -175,9 +175,9 @@
                     <?php for ($i = 6; $i < 8; $i++) {
                         $truyenMoi = $listTruyenMoi[$i] ?>
                         <div class="gioithieu-detail">
-                            <a href="#" class="gioithieu-detail-img"><img src="<?php echo htmlspecialchars($truyenMoi->anhBia) ?>"></a>
+                            <a href="?controller=truyen&action=Truyendetail&idTruyen=<?php echo htmlspecialchars($truyenMoi->idTruyen)?>" class="gioithieu-detail-img"><img src="<?php echo htmlspecialchars($truyenMoi->anhBia) ?>"></a>
                             <div class="theloai-container-flex-column">
-                                <a href="" class="gioithieu-detail-tentruyen"><?php echo htmlspecialchars($truyenMoi->tenTruyen) ?></a>
+                                <a href="?controller=truyen&action=Truyendetail&idTruyen=<?php echo htmlspecialchars($truyenMoi->idTruyen)?>" class="gioithieu-detail-tentruyen"><?php echo htmlspecialchars($truyenMoi->tenTruyen) ?></a>
                                 <div class="gioithieu-detail-theloai"><?php if ($truyenMoi->loaiTruyen == 0) {
                                                                             echo htmlspecialchars('Truyện tranh');
                                                                         } else {
@@ -233,7 +233,7 @@
             © 2020 Bản quyền thuộc về Team TMT - MT Manga
         </div>
     </footer>
-    <script src="/TMTManga/assets/javascript/MTmanga.js"></script>
+    <script src="/TMTManga/assets/javascript/MTmanga.js"></script>    
 </body>
 
 </html>

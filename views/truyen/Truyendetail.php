@@ -11,21 +11,21 @@
     <link href="https://fonts.googleapis.com/css2?family=Grandstander:wght@100&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/2b3f16036e.js" crossorigin="anonymous"></script>
     <link href="/TMTManga/assets/css/Truyendetail.css" rel="stylesheet">
-    <title>MT Manga | Tiểu thuyết | Tên truyện</title>
+    <title><?php echo htmlspecialchars($truyen->tenTruyen) ?></title>
 </head>
 
 <body>
-<header>
+    <header>
         <img src="/TMTManga/assets/image/image/mtlogo7.png" class="img-logo">
         <div class="div-namepage">MT Manga</div>
         <div class="menu-bar">
             <a href="index.php" class="menu-bar-btn">Trang chủ</a>
-            <a href="Truyentranh.php" class="menu-bar-btn"> Truyện tranh</a>
-            <a href="Tieuthuyet.php" class="menu-bar-btn">Tiểu thuyết</a>
+            <a href="?controller=truyen&action=Truyentranh" class="menu-bar-btn"> Truyện tranh</a>
+            <a href="?controller=truyen&action=Tieuthuyet" class="menu-bar-btn">Tiểu thuyết</a>
         </div>
         <div class="search-bar">
-             <input type="text" class="search-btn-input">
-             <button class="search-btn" ><i class="fas fa-search"></i></button>
+            <input type="text" class="search-btn-input">
+            <button class="search-btn"><i class="fas fa-search"></i></button>
         </div>
         <div class="account-bar">
             <a href="" class="menu-bar-btn">Đăng nhập</a>
@@ -33,39 +33,74 @@
     </header>
     <main>
         <div class="main-duongdan">
-            <a href="#">Tiểu thuyết</a>/
-            <a href="#">Thể loại</a>/Tên truyện
+            <a href="?controller=truyen&action=<?php if($truyen->loaiTruyen==0){
+                echo htmlspecialchars('Truyentranh');
+            }else{echo htmlspecialchars('Tieuthuyet');} ?>"><?php if($truyen->loaiTruyen==0){
+                echo htmlspecialchars('Truyện tranh');
+                }else{echo htmlspecialchars('Tiểu thuyết');}?>
+            </a>/
+            <a href="?controller=truyen&action=Alltruyen"><?php $theloaitruyen=$listTheLoaiTruyen[0]; 
+                for($i=0;$i<count($listTheLoai);$i++){
+                    $theloai=$listTheLoai[$i];                    
+                    if($theloai->idTheLoai==$theloaitruyen->idTheLoai){
+                        echo htmlspecialchars($theloai->tenTheLoai);
+                    }
+            } ?>
+            </a>/<?php echo htmlspecialchars($truyen->tenTruyen) ?>
         </div>
         <div class="main-detail">
             <div class="anh-tentruyen">
-                <img src="./imgTieuthuyet/imgBennhautrondoi.gif">
-                <div>Bên nhau trọn đời</div>
+                <img src="<?php echo htmlspecialchars($truyen->anhBia) ?>">
+                <div><?php echo htmlspecialchars($truyen->tenTruyen) ?></div>
             </div>
             <div class="main-overview">
-                <div class="main-overview-like"><i class="fas fa-thumbs-up"></i> 208000</div>
+                <div class="main-overview-like">
+                    <i class="fas fa-thumbs-up"></i>
+                    <?php echo htmlspecialchars($truyen->luotLike)?>
+                </div>
                 <div class="main-overview-flex">
                     <div class="main-overview-title">Tác giả</div>
-                    <div class="main-overview-info" id="tacgia">Tên tác giả</div>
+                    <div class="main-overview-info" id="tacgia">
+                        <?php for($i=0;$i<count($listTacGia);$i++){  
+                            $tg=$listTacGia[$i];
+                            if($truyen->idTacGia==$tg->idTacGia){
+                                echo htmlspecialchars($tg->tenTacGia);
+                            }
+                        }?>
+                    </div>
                 </div>
                 <div class="main-overview-flex">
                     <div class="main-overview-title">Thể loại</div>
-                    <div class="main-overview-info" id="theloai">Lãng mạn</div>
+                    <div class="main-overview-info" id="theloai">
+                        <?php for($i=0;$i<count($listTheLoaiTruyen);$i++){
+                            $theloaitruyen= $listTheLoaiTruyen[$i];
+                            for($j=0;$j<count($listTheLoai);$j++){
+                                $theloai= $listTheLoai[$j];
+                                if($theloaitruyen->idTheLoai==$theloai->idTheLoai){
+                                    echo htmlspecialchars($theloai->tenTheLoai);
+                                    echo ('  ');
+                                }
+                            }
+                        }?>
+                    </div>
                 </div>
                 <div class="main-overview-flex">
                     <div class="main-overview-title">Tình trạng</div>
-                    <div class="main-overview-info" id="tinhtrang">Đang sáng tác</div>
+                    <div class="main-overview-info" id="tinhtrang">
+                        <?php echo htmlspecialchars($truyen->tinhTrang)?>
+                    </div>
                 </div>
                 <div class="main-overview-flex">
-                    <div class="main-overview-title">Năm xuất bản</div>
-                    <div class="main-overview-info" id="namxb">2020</div>
+                    <div class="main-overview-title">Ngày xuất bản</div>
+                    <div class="main-overview-info" id="namxb">
+                        <?php echo htmlspecialchars($truyen->ngayDang)?>
+                    </div>
                 </div>
                 <div class="main-overview-flex">
                     <div class="main-overview-title">Số chương</div>
-                    <div class="main-overview-info" id="sochuong">45</div>
-                </div>
-                <div class="main-overview-flex">
-                    <div class="main-overview-title">Lịch phát hành</div>
-                    <div class="main-overview-info" id="lich">thứ 3 thứ 5 hàng tuần </div>
+                    <div class="main-overview-info" id="sochuong">
+                        <?php echo htmlspecialchars($truyen->soChuong)?>
+                    </div>
                 </div>
                 <div class="main-overview-btn"><a href="#">Đọc chương 1</a></div>
             </div>
@@ -170,5 +205,5 @@
             © 2020 Bản quyền thuộc về Team TMT - MT Manga
         </div>
     </footer>
-    <script src="./javascript/Truyendetail.js"></script>
+    <script src="/TMTManga/assets/javascript/Truyendetail.js"></script>
 </body>

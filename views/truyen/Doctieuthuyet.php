@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,21 +12,22 @@
     <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Grandstander:wght@100&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" crossorigin="anonymous">
-    <link rel="stylesheet" href="/TMTManga/assets/css/manga-story.css">	
+    <link rel="stylesheet" href="/TMTManga/assets/css/manga-story.css">
     <title>Tiểu thuyết | </title>
 </head>
+
 <body>
 <header>
         <img src="/TMTManga/assets/image/image/mtlogo7.png" class="img-logo">
         <div class="div-namepage">MT Manga</div>
         <div class="menu-bar">
             <a href="index.php" class="menu-bar-btn">Trang chủ</a>
-            <a href="Truyentranh.php" class="menu-bar-btn"> Truyện tranh</a>
-            <a href="Tieuthuyet.php" class="menu-bar-btn">Tiểu thuyết</a>
+            <a href="?controller=truyen&action=Truyentranh" class="menu-bar-btn"> Truyện tranh</a>
+            <a href="?controller=truyen&action=Tieuthuyet" class="menu-bar-btn">Tiểu thuyết</a>
         </div>
         <div class="search-bar">
-             <input type="text" class="search-btn-input">
-             <button class="search-btn" ><i class="fas fa-search"></i></button>
+            <input type="text" class="search-btn-input">
+            <button class="search-btn"><i class="fas fa-search"></i></button>
         </div>
         <div class="account-bar">
             <a href="" class="menu-bar-btn">Đăng nhập</a>

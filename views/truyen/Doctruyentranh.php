@@ -19,13 +19,13 @@
 </head>
 
 <body>
-    <header>
+<header>
         <img src="/TMTManga/assets/image/image/mtlogo7.png" class="img-logo">
         <div class="div-namepage">MT Manga</div>
         <div class="menu-bar">
             <a href="index.php" class="menu-bar-btn">Trang chủ</a>
-            <a href="Truyentranh.php" class="menu-bar-btn"> Truyện tranh</a>
-            <a href="Tieuthuyet.php" class="menu-bar-btn">Tiểu thuyết</a>
+            <a href="?controller=truyen&action=Truyentranh" class="menu-bar-btn"> Truyện tranh</a>
+            <a href="?controller=truyen&action=Tieuthuyet" class="menu-bar-btn">Tiểu thuyết</a>
         </div>
         <div class="search-bar">
             <input type="text" class="search-btn-input">

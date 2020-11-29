@@ -12,7 +12,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Goldman&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/2b3f16036e.js" crossorigin="anonymous"></script>
-    <link href="./css/Admin.css" rel="stylesheet">
+    <link href="/TMTManga/assets/css/Admin.css" rel="stylesheet">
     <title>Admin | Sửa/Xóa Truyện</title>
 </head>
 
@@ -203,7 +203,7 @@
             © 2020 Bản quyền thuộc về Team TMT - MT Manga
         </div>
     </footer>
-    <script src="./javascript/Admin.js"></script>
+    <script src="/TMTManga/assets/javascript/Admin.js"></script>
 </body>
 
 </html>
