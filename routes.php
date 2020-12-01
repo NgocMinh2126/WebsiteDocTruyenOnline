@@ -22,6 +22,8 @@ if($action=='Truyentranh'){
   }else{
     $controller->$action();
   }
+}else if($action=='Doctruyentranh'){
+  $controller->$action($idTruyen);
 }
 else{
   $controller->$action(); 

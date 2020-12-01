@@ -84,7 +84,7 @@
             <div class="main-dstruyen-detail">
                 <?php for ($i = 0; $i < 10; $i++) {
                     $Truyen = $listTruyenTranh[$i] ?>
-                    <a href="?controller=truyen&action=Truyendetail&idTruyen=<?php echo htmlspecialchars($Truyen->idTruyen)?>" class="main-dstruyen-detail-a">
+                    <a href="?controller=truyen&action=Truyendetail&idTruyen=<?php echo htmlspecialchars($Truyen->idTruyen) ?>" class="main-dstruyen-detail-a">
                         <img src="<?php echo htmlspecialchars($Truyen->anhBia) ?>" class="main-dstruyen-img">
                         <div class="main-dstruyen-detail-tentruyen"><?php echo htmlspecialchars($Truyen->tenTruyen) ?></div>
                     </a>
@@ -125,9 +125,9 @@
                     <?php for ($i = 0; $i < 6; $i++) {
                         $truyenMoi = $listTruyenMoi[$i] ?>
                         <div class="container-flex">
-                            <a href="?controller=truyen&action=Truyendetail&idTruyen=<?php echo htmlspecialchars($truyenMoi->idTruyen)?>" class="detail-truyen-img"><img src="<?php echo htmlspecialchars($truyenMoi->anhBia) ?>"></a>
+                            <a href="?controller=truyen&action=Truyendetail&idTruyen=<?php echo htmlspecialchars($truyenMoi->idTruyen) ?>" class="detail-truyen-img"><img src="<?php echo htmlspecialchars($truyenMoi->anhBia) ?>"></a>
                             <div class="container-flex-column">
-                                <a href="?controller=truyen&action=Truyendetail&idTruyen=<?php echo htmlspecialchars($truyenMoi->idTruyen)?>" class="detail-truyen-name"><?php echo htmlspecialchars($truyenMoi->tenTruyen) ?></a>
+                                <a href="?controller=truyen&action=Truyendetail&idTruyen=<?php echo htmlspecialchars($truyenMoi->idTruyen) ?>" class="detail-truyen-name"><?php echo htmlspecialchars($truyenMoi->tenTruyen) ?></a>
                                 <div class="detail-truyen-info">
                                     <i class="fas fa-calendar"></i>
                                     Ngày ra mắt: <?php echo htmlspecialchars($truyenMoi->ngayDang) ?>
@@ -151,33 +151,54 @@
             <div class="main-moicapnhat-topic">
                 <div class="theloai-title">Thể loại</div>
                 <div class="theloai">
-                    <div class="theloai-container-flex-column">
-                        <a href="#" class="theloai-btn"><i class="fas fa-caret-right"></i> Ngôn tình</a>
-                        <a href="#" class="theloai-btn"><i class="fas fa-caret-right"></i> Hài hước</a>
-                        <a href="#" class="theloai-btn"><i class="fas fa-caret-right"></i> Cổ đại</a>
-                        <a href="#" class="theloai-btn"><i class="fas fa-caret-right"></i> Xuyên không</a>
-                        <a href="#" class="theloai-btn"><i class="fas fa-caret-right"></i> Học đường</a>
-                        <a href="#" class="theloai-btn"><i class="fas fa-caret-right"></i> Tổng tài</a>
-                        <a href="#" class="theloai-btn"><i class="fas fa-caret-right"></i> Showbiz</a>
-                    </div>
-                    <div class="theloai-container-flex-column">
-                        <a href="#" class="theloai-btn"><i class="fas fa-caret-right"></i> Trinh thám</a>
-                        <a href="#" class="theloai-btn"><i class="fas fa-caret-right"></i> Kiếm hiệp</a>
-                        <a href="#" class="theloai-btn"><i class="fas fa-caret-right"></i> Viễn tưởng</a>
-                        <a href="#" class="theloai-btn"><i class="fas fa-caret-right"></i> Kinh dị</a>
-                        <a href="#" class="theloai-btn"><i class="fas fa-caret-right"></i> Đã full</a>
-                        <a href="#" class="theloai-btn"><i class="fas fa-caret-right"></i> Cập nhật hôm nay</a>
-                        <a href="#" class="theloai-btn"><i class="fas fa-caret-right"></i> Mới nhất</a>
-                    </div>
+                    <?php $socot = 1;
+                    if (count($listTheLoai) > 7) {
+                        $sl = count($listTheLoai);
+                        if ($sl % 7 == 0) {
+                            $socot = $sl / 7;
+                        } else {
+                            $socot = intval($sl / 7) + 1;
+                        }
+                        for ($i = 0; $i < $socot - 1; $i++) {
+                            $min = ($i * 7);
+                            $max = ($i + 1) * 7; ?>
+                            <div class="theloai-container-flex-column">
+                                <?php for ($j = $min; $j < $max; $j++) {
+                                    $theloai = $listTheLoai[$j]; ?>
+                                    <a href="?controller=truyen&action=Alltruyen&idTheLoai=<?php echo htmlspecialchars($theloai->idTheLoai) ?>" class="theloai-btn">
+                                        <i class="fas fa-caret-right"></i> <?php echo htmlspecialchars($theloai->tenTheLoai) ?>
+                                    </a>
+                                <?php } ?>
+                            </div>
+                        <?php }
+                        $min = ($socot - 1) * 7; ?>
+                        <div class="theloai-container-flex-column">
+                            <?php for ($i = $min; $i < $sl; $i++) {
+                                $theloai = $listTheLoai[$i]; ?>
+                                <a href="?controller=truyen&action=Alltruyen&idTheLoai=<?php echo htmlspecialchars($theloai->idTheLoai) ?>" class="theloai-btn">
+                                    <i class="fas fa-caret-right"></i> <?php echo htmlspecialchars($theloai->tenTheLoai) ?>
+                                </a>
+                            <?php } ?>
+                        </div>
+                    <?php } else { ?>
+                        <div class="theloai-container-flex-column">
+                            <?php for ($i = $min; $i < $sl; $i++) {
+                                $theloai = $listTheLoai[$i]; ?>
+                                <a href="?controller=truyen&action=Alltruyen&idTheLoai=<?php echo htmlspecialchars($theloai->idTheLoai) ?>" class="theloai-btn">
+                                    <i class="fas fa-caret-right"></i> <?php echo htmlspecialchars($theloai->tenTheLoai) ?>
+                                </a>
+                            <?php } ?>
+                        </div>
+                    <?php } ?>
                 </div>
                 <div class="theloai-title">Giới thiệu</div>
                 <div class="gioithieu-container-flex">
                     <?php for ($i = 6; $i < 8; $i++) {
                         $truyenMoi = $listTruyenMoi[$i] ?>
                         <div class="gioithieu-detail">
-                            <a href="?controller=truyen&action=Truyendetail&idTruyen=<?php echo htmlspecialchars($truyenMoi->idTruyen)?>" class="gioithieu-detail-img"><img src="<?php echo htmlspecialchars($truyenMoi->anhBia) ?>"></a>
+                            <a href="?controller=truyen&action=Truyendetail&idTruyen=<?php echo htmlspecialchars($truyenMoi->idTruyen) ?>" class="gioithieu-detail-img"><img src="<?php echo htmlspecialchars($truyenMoi->anhBia) ?>"></a>
                             <div class="theloai-container-flex-column">
-                                <a href="?controller=truyen&action=Truyendetail&idTruyen=<?php echo htmlspecialchars($truyenMoi->idTruyen)?>" class="gioithieu-detail-tentruyen"><?php echo htmlspecialchars($truyenMoi->tenTruyen) ?></a>
+                                <a href="?controller=truyen&action=Truyendetail&idTruyen=<?php echo htmlspecialchars($truyenMoi->idTruyen) ?>" class="gioithieu-detail-tentruyen"><?php echo htmlspecialchars($truyenMoi->tenTruyen) ?></a>
                                 <div class="gioithieu-detail-theloai"><?php if ($truyenMoi->loaiTruyen == 0) {
                                                                             echo htmlspecialchars('Truyện tranh');
                                                                         } else {
@@ -233,7 +254,7 @@
             © 2020 Bản quyền thuộc về Team TMT - MT Manga
         </div>
     </footer>
-    <script src="/TMTManga/assets/javascript/MTmanga.js"></script>    
+    <script src="/TMTManga/assets/javascript/MTmanga.js"></script>
 </body>
 
 </html>

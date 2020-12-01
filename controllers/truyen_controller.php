@@ -4,6 +4,7 @@ require_once('models/Truyen.php');
 require_once('models/TacGia.php');
 require_once('models/TheLoai.php');
 require_once('models/TheLoaiTruyen.php');
+require_once('models/Chuong.php');
 
 class TruyenController extends BaseController
 {
@@ -18,11 +19,13 @@ class TruyenController extends BaseController
         $listTieuThuyet = Truyen::getTieuThuyet();
         $listTruyenMoi = Truyen:: getTruyenMoi();
         $listTacGia= TacGia::getTacGia();
+        $listTheLoai= TheLoai::getTheLoai();
         $data=array (
             'listTruyenTranh'=>$listTruyenTranh,
             'listTieuThuyet'=>$listTieuThuyet,
             'listTruyenMoi'=>$listTruyenMoi,
             'listTacGia'=>$listTacGia,
+            'listTheLoai'=>$listTheLoai,
         ); //tuong tu object
         $this->render('index',$data);        
     }
@@ -45,7 +48,10 @@ class TruyenController extends BaseController
         $this->render('Truyentranh',$data);
     }
     public function Tieuthuyet(){
-        $data=array('1');
+        $listTieuThuyet = Truyen::getTieuThuyet();
+        $data=array(
+            'listTieuThuyet'=>$listTieuThuyet,
+        );
         $this->render('Tieuthuyet',$data);
     }
     public function Alltruyen(){
@@ -71,12 +77,27 @@ class TruyenController extends BaseController
         $listTheLoai= TheLoai::getTheLoai();
         $listTheLoaiTruyen= TheLoaiTruyen::getTheLoaiTruyen($idTruyen);
         $listTacGia = TacGia::getTacGia();
+        $listChuong=Chuong::getChuong($idTruyen);
         $data=array(
             'truyen'=>$truyen,
             'listTacGia'=> $listTacGia,
             'listTheLoai'=>$listTheLoai,
             'listTheLoaiTruyen'=>$listTheLoaiTruyen,
+            'listChuong'=>$listChuong,
         );
         $this->render('Truyendetail',$data);
+    }
+    public function Doctruyentranh($idTruyen){
+        $truyen= Truyen::getTruyenID($idTruyen);
+        $listTheLoai=TheLoai::getTheLoai();
+        $listTheLoaiTruyen=TheLoaiTruyen::getTheLoaiTruyen($idTruyen);
+        $listChuong=Chuong::getChuong($idTruyen);
+        $data=array(
+            'truyen'=>$truyen,
+            'listTheLoai'=>$listTheLoai,
+            'listTheLoaiTruyen'=>$listTheLoaiTruyen,
+            'listChuong'=>$listChuong,
+        );
+        $this->render('Doctruyentranh',$data);
     }
 }

@@ -19,7 +19,7 @@
 </head>
 
 <body>
-<header>
+    <header>
         <img src="/TMTManga/assets/image/image/mtlogo7.png" class="img-logo">
         <div class="div-namepage">MT Manga</div>
         <div class="menu-bar">
@@ -38,26 +38,53 @@
     <main>
         <div>
             <div class="main-duongdan">
-                <a href="#">Truyện tranh</a>/
-                <a href="#">Thể loại</a>/Tên truyện
+                <a href="?controller=truyen&action=Truyentranh"><?php if ($truyen->loaiTruyen == 0) {
+                                echo htmlspecialchars("Truyện tranh");
+                            } else {
+                                echo htmlspecialchars("Tiểu thuyết");
+                            }
+                            ?></a>/
+                <a href="?controller=truyen&action=Alltruyen&idTheLoai=<?php $theloai=$listTheLoaiTruyen[0]; echo htmlspecialchars($theloai->idTheLoai) ?>"><?php
+                            $theloaitruyen = $listTheLoaiTruyen[0];
+                            for ($i = 0; $i < count($listTheLoai); $i++) {
+                                $theloai = $listTheLoai[$i];
+                                if ($theloaitruyen->idTheLoai == $theloai->idTheLoai) {
+                                    echo htmlspecialchars($theloai->tenTheLoai);
+                                }
+                            }
+                            ?></a>/<?php echo htmlspecialchars($truyen->tenTruyen) ?>
             </div>
         </div>
         <div class="main-header">
-            <div class="main-header-tentruyen">Tên truyện</div>
-            <div class="main-header-chuong">Chương 2</div>
+            <div class="main-header-tentruyen"><?php echo htmlspecialchars($truyen->tenTruyen) ?></div>
+            <div class="main-header-chuong">Chương <?php echo htmlspecialchars($_GET["chuong"]) ?></div>
             <div id="navbar">
-                <a href="#" id="btn-truoc"><i class="fas fa-chevron-left"></i> Chương trước</a>
-                <a class="dschuong">
-                    <select id="select-chapter">
-                        <option selected="selected" value="1">Chapter1</option>
-                        <option value="2">Chapter2</option>
-                    </select>
-                </a>
-                <a href="#" id="btn-sau">Chương sau <i class="fas fa-chevron-right"></i></a>
+                <button id="btn-truoc"><i class="fas fa-chevron-left"></i> Chương trước</button>
+                <div class="dropdown-container">
+                    <div id="select-chapter"> Chương <?php echo htmlspecialchars($_GET["chuong"]) ?> <i class="fas fa-chevron-down"></i></div>
+                    <div class="content-dschuong">
+                        <?php for($i=0;$i<$truyen->soChuong;$i++){?>
+                            <a class="dropdown-btn" href="?controller=truyen&action=Doctruyentranh&idTruyen=<?php echo htmlspecialchars($truyen->idTruyen) ?>&chuong=<?php echo $i+1?>">Chương <?php echo $i+1?></a>
+                       <?php } ?>
+                        
+                    </div>
+                </div>
+                <button id="btn-sau">Chương sau <i class="fas fa-chevron-right"></i></button>
             </div>
             <div class="phancach"></div>
         </div>
-        <div id="upload-image"></div>
+        <div id="upload-image">
+            <?php $directory = "C:/xampp/htdocs/TMTManga/assets/truyentranh/" . $truyen->idTruyen . "/Chuong" . htmlspecialchars($_GET["chuong"]) . "/";
+            $imgcount = 0;
+            $fi = new FilesystemIterator(__DIR__, FilesystemIterator::SKIP_DOTS);
+            $img = glob($directory . "*.PNG");
+            if ($img) {
+                $imgcount = count($img);
+            }
+            for ($i = 1; $i <= $imgcount; $i++) { ?>
+                <img src="/TMTManga/assets/truyentranh/<?php echo htmlspecialchars($truyen->idTruyen) ?>/Chuong<?php echo htmlspecialchars($_GET["chuong"]) ?>/<?php echo $i ?>.png">
+            <?php } ?>
+        </div>
     </main>
     <footer>
         <div class="footer-lienhe">
@@ -88,7 +115,30 @@
             © 2020 Bản quyền thuộc về Team TMT - MT Manga
         </div>
     </footer>
-    <script src="/js/manga.js"></script>
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const myParam = urlParams.get('chuong'); // == $_GET['chuong']
+        console.log(myParam);
+        const btnNext = document.querySelector('#btn-sau');
+        const btnPre = document.querySelector('#btn-truoc');
+        if ((parseInt(myParam) + 1) > <?php echo htmlspecialchars($truyen->soChuong) ?>) {
+            btnNext.disabled = true;
+            btnNext.style.backgroundColor = '#adddce';
+            btnNext.style.color = "white";
+        }
+        if ((parseInt(myParam) - 1) < 1) {
+            btnPre.disabled = true;
+            btnPre.style.backgroundColor = '#adddce';
+            btnPre.style.color = "white";
+        }
+        btnNext.onclick = function() {
+            window.location = "?controller=truyen&action=Doctruyentranh&idTruyen=" + urlParams.get('idTruyen') + "&chuong=" + (parseInt(myParam) + 1);
+        }
+        btnPre.onclick = function() {
+            window.location = "?controller=truyen&action=Doctruyentranh&idTruyen=" + urlParams.get('idTruyen') + "&chuong=" + (parseInt(myParam) - 1);
+        }
+        console.log(<?php echo $truyen->soChuong ?>);
+    </script>
 </body>
 
 </html>

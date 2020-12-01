@@ -119,20 +119,48 @@ main{
     background-color:#38908f;
     color: white;
     text-align: center;
-    font-size: 1.25rem;
+    font-size: 1rem;
     border-radius: 5px;
-    text-decoration: none;
     padding-left: 5px;
     padding-right: 5px;
+    outline: none;
+    border: none;
+    font-family: Georgia, 'Times New Roman', Times, serif;
 }
 #btn-truoc:hover, #btn-sau:hover{
     background-color: #adddce;
     color:#38908f;
 }
-#select-chapter{
+.dropdown-container{
+    position: relative;
     display: inline-block;
-    height: 2.5rem;
-    line-height: 2.5rem;
+}
+.content-dschuong{
+    width: 6rem;
+    position: absolute;
+    box-shadow: 0px 5px 10px 0px rgb(0, 0, 0, 0.2);
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    background-color: #adddce;
+    left: 8px;
+    visibility: hidden;
+}
+.dropdown-container:hover .content-dschuong{
+    visibility: visible;
+}
+.dropdown-btn{
+    text-decoration: none;
+    color: black;
+    cursor: pointer;
+    margin-top: 5px;
+}
+.dropdown-btn:hover{
+    background-color: #38908f;
+}
+#select-chapter{
+    height: 2rem;
+    line-height: 2rem;
     outline: none;
     border: none;
     background-color:#38908f;
@@ -141,6 +169,7 @@ main{
     font-size: 1rem;
     font-weight: bold;
     cursor: pointer;
+    padding: 5px 5px 5px 5px;
 }
 #select-chapter:hover{
     background-color: #adddce;
@@ -149,6 +178,7 @@ main{
 #select-chapter *{
     border-radius: 15px;
 }
+
 .sticky{
     top: 0;
     position: fixed;

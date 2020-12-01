@@ -102,7 +102,9 @@
                         <?php echo htmlspecialchars($truyen->soChuong)?>
                     </div>
                 </div>
-                <div class="main-overview-btn"><a href="#">Đọc chương 1</a></div>
+                <div class="main-overview-btn">
+                    <a href="?controller=truyen&action=Doctruyentranh&idTruyen=<?php echo htmlspecialchars($truyen->idTruyen)?>&chuong=1">Đọc chương 1</a>
+                </div>
             </div>
             <div class="main-summary">
                 <div class="main-summary-title"><i class="fas fa-pen-alt"></i>Giới thiệu</div>
@@ -131,29 +133,20 @@
                     <button class="sapxepchuong-btn"><i class="fas fa-sort"></i></button>
                 </div>
                 <div class="main-morong-chuong-container">
-                    <div class="main-morong-chuong">
+                    <?php for($i = 0 ; $i < $truyen->soChuong; $i++ ){$chuong=$listChuong[$i]?>
+                        <div class="main-morong-chuong">
                         <div class="chuong-contain">
-                            <a href="#">Chương 3</a>
-                            <div>11/11/2019</div>
+                            <a href="?controller=truyen&action=Doctruyentranh&idTruyen=1&chuong=<?php echo $i+1 ?>">Chương <?php echo $i+1 ?></a>
+                            <div><?php echo htmlspecialchars($chuong->ngayThem) ?></div>
                         </div>
                     </div>
-                    <div class="main-morong-chuong">
-                        <div class="chuong-contain">
-                            <a href="#">Chương 2</a>
-                            <div>11/11/2019</div>
-                        </div>
-                    </div>
-                    <div class="main-morong-chuong">
-                        <div class="chuong-contain">
-                            <a href="#">Chương 1</a>
-                            <div>11/11/2019</div>
-                        </div>
-                    </div>
+                    <?php } ?>
                 </div>
             </div>
             <div class="main-morong-theloai">
                 <div class="main-morong-theloai-title">Thể loại</div>
                 <div class="main-morong-theloai-container">
+                    
                     <div class="main-morong-theloai-detail">
                         <a href="#" class="theloai-btn"><i class="fas fa-caret-right"></i> Ngôn tình</a>
                         <a href="#" class="theloai-btn"><i class="fas fa-caret-right"></i> Hài hước</a>
