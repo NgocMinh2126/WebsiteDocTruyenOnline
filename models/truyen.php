@@ -139,6 +139,16 @@
             $item=$query->fetch();
             $truyen= new Truyen($item['IDTruyen'], $item['TenTruyen'], $item['MoTa'], $item['SoChuong'],$item['LuotLike'], $item['AnhBia'],$item['TinhTrang'],$item['IDTacGia'],$item['LoaiTruyen'],$item['NgayDang']);
             return $truyen;
-        }        
+        }  
+        static function getTruyenFull(){
+            $listTruyenFull=[];
+            $db=DB::getInstance();
+            $query=$db->query("SELECT * FROM truyen WHERE TinhTrang='Đã hoàn thành'");
+            foreach($query->fetchAll() as $item){
+                $tr= new Truyen($item['IDTruyen'], $item['TenTruyen'], $item['MoTa'], $item['SoChuong'],$item['LuotLike'], $item['AnhBia'],$item['TinhTrang'],$item['IDTacGia'],$item['LoaiTruyen'],$item['NgayDang']);
+                $listTruyenFull[] = $tr;
+            }
+            return $listTruyenFull;
+        }
     }    
 ?>

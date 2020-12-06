@@ -19,7 +19,7 @@
 <body>
     <main>
         <div class="main-logo">
-            <img src="./image/mtlogo7.png">
+            <img src="/TMTManga/assets/image/image/mtlogo7.png">
             <div class="main-logo-title">MT Manga</div>
         </div>
         <div class="main-thongke">

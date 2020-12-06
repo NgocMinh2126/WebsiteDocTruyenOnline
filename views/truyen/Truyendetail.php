@@ -109,18 +109,14 @@
             <div class="main-summary">
                 <div class="main-summary-title"><i class="fas fa-pen-alt"></i>Giới thiệu</div>
                 <p class="main-summary-noidung">
-                    Triệu Mặc Sênh lặng người nhìn cặp trai gái đứng trước quầy bán rau, một lần nữa chị cảm nhận sự lạ
-                    lùng của số phận. Bảy năm trước, chính họ khiến chị quyết định ra đi.
-                    Bây giờ họ lại cùng nhau đi mua sắm, vậy là cuối cùng họ vẫn nhau! May mà hồi ấy chị bỏ ra đi, nếu
-                    không…Mặc Sênh không dám nghĩ thêm…
-                    Hà Dĩ Thâm, Hà Dĩ Văn, sao mình ngốc thế, tại sao cứ một mực cho rằng hai người ấy tên giống nhau
-                    thì nhất định là anh em?
-                    “Chúng tôi không phải là anh em, trước đây hai gia đình chúng tôi là hàng xóm của nhau, đều họ Hà
-                    cho nên cũng đặt tên cho các con giống nhau. Về sau, cha mẹ Dĩ Thâm đột ngột qua đời, cha mẹ tôi
-                    nhận nuôi Dĩ Thâm.”
-                    “Chị tưởng, chị mạnh hơn tình cảm hai mươi năm giữa tôi và Dĩ Thâm sao?”
-                    “Hôm nay tôi chính thức cho chị biết, tôi yêu Dĩ Thâm, nhưng tôi không muốn yêu thầm yêu vụng. Tôi
-                    và chị sẽ cạnh tranh công khai.”...........
+                    <?php $moTa = @fopen("$truyen->moTa","r");
+                    if(!$moTa){
+                        echo "Không load được phần giới thiệu";
+                    }else{
+                        while(feof($moTa)==false){
+                            echo fgetc($moTa);
+                        }
+                    }?>
                 </p>
                 <button id="summary-xemthem-btn">Xem thêm <i class="fas fa-chevron-down"></i></button>
             </div>
@@ -136,7 +132,7 @@
                     <?php for($i = 0 ; $i < $truyen->soChuong; $i++ ){$chuong=$listChuong[$i]?>
                         <div class="main-morong-chuong">
                         <div class="chuong-contain">
-                            <a href="?controller=truyen&action=Doctruyentranh&idTruyen=1&chuong=<?php echo $i+1 ?>">Chương <?php echo $i+1 ?></a>
+                            <a href="?controller=truyen&action=Doctruyentranh&idTruyen=<?php echo htmlspecialchars($truyen->idTruyen) ?>&chuong=<?php echo $i+1 ?>">Chương <?php echo $i+1 ?></a>
                             <div><?php echo htmlspecialchars($chuong->ngayThem) ?></div>
                         </div>
                     </div>
@@ -146,25 +142,46 @@
             <div class="main-morong-theloai">
                 <div class="main-morong-theloai-title">Thể loại</div>
                 <div class="main-morong-theloai-container">
-                    
-                    <div class="main-morong-theloai-detail">
-                        <a href="#" class="theloai-btn"><i class="fas fa-caret-right"></i> Ngôn tình</a>
-                        <a href="#" class="theloai-btn"><i class="fas fa-caret-right"></i> Hài hước</a>
-                        <a href="#" class="theloai-btn"><i class="fas fa-caret-right"></i> Cổ đại</a>
-                        <a href="#" class="theloai-btn"><i class="fas fa-caret-right"></i> Xuyên không</a>
-                        <a href="#" class="theloai-btn"><i class="fas fa-caret-right"></i> Học đường</a>
-                        <a href="#" class="theloai-btn"><i class="fas fa-caret-right"></i> Tổng tài</a>
-                        <a href="#" class="theloai-btn"><i class="fas fa-caret-right"></i> Showbiz</a>
-                    </div>
-                    <div class="main-morong-theloai-detail">
-                        <a href="#" class="theloai-btn"><i class="fas fa-caret-right"></i> Trinh thám</a>
-                        <a href="#" class="theloai-btn"><i class="fas fa-caret-right"></i> Kiếm hiệp</a>
-                        <a href="#" class="theloai-btn"><i class="fas fa-caret-right"></i> Viễn tưởng</a>
-                        <a href="#" class="theloai-btn"><i class="fas fa-caret-right"></i> Kinh dị</a>
-                        <a href="#" class="theloai-btn"><i class="fas fa-caret-right"></i> Đã full</a>
-                        <a href="#" class="theloai-btn"><i class="fas fa-caret-right"></i> Cập nhật hôm nay</a>
-                        <a href="#" class="theloai-btn"><i class="fas fa-caret-right"></i> Mới nhất</a>
-                    </div>
+                    <?php $socot = 1;
+                    if (count($listTheLoai) > 7) {
+                        $sl = count($listTheLoai);
+                        if ($sl % 7 == 0) {
+                            $socot = $sl / 7;
+                        } else {
+                            $socot = intval($sl / 7) + 1;
+                        }
+                        for ($i = 0; $i < $socot - 1; $i++) {
+                            $min = ($i * 7);
+                            $max = ($i + 1) * 7; ?>
+                            <div class="main-morong-theloai-detail">
+                                <?php for ($j = $min; $j < $max; $j++) {
+                                    $theloai = $listTheLoai[$j]; ?>
+                                    <a href="?controller=truyen&action=Alltruyen&idTheLoai=<?php echo htmlspecialchars($theloai->idTheLoai) ?>" class="theloai-btn">
+                                        <i class="fas fa-caret-right"></i> <?php echo htmlspecialchars($theloai->tenTheLoai) ?>
+                                    </a>
+                                <?php } ?>
+                            </div>
+                        <?php }
+                        $min = ($socot - 1) * 7; ?>
+                        <div class="main-morong-theloai-detail">
+                            <?php for ($i = $min; $i < $sl; $i++) {
+                                $theloai = $listTheLoai[$i]; ?>
+                                <a href="?controller=truyen&action=Alltruyen&idTheLoai=<?php echo htmlspecialchars($theloai->idTheLoai) ?>" class="theloai-btn">
+                                    <i class="fas fa-caret-right"></i> <?php echo htmlspecialchars($theloai->tenTheLoai) ?>
+                                </a>
+                            <?php } ?>
+                        </div>
+                    <?php } else { ?>
+                        <div class="main-morong-theloai-detail">
+                            <?php for ($i = $min; $i < $sl; $i++) {
+                                $theloai = $listTheLoai[$i]; ?>
+                                <a href="?controller=truyen&action=Alltruyen&idTheLoai=<?php echo htmlspecialchars($theloai->idTheLoai) ?>" class="theloai-btn">
+                                    <i class="fas fa-caret-right"></i> <?php echo htmlspecialchars($theloai->tenTheLoai) ?>
+                                </a>
+                            <?php } ?>
+                        </div>
+                    <?php } ?>
+                </div>
                 </div>
             </div>
         </div>

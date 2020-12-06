@@ -15,7 +15,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" crossorigin="anonymous">
     <link href="/TMTManga/assets/css/manga-story.css" rel="stylesheet">
-    <title>Truyện tranh |</title>
+    <title> Đọc Truyện tranh | <?php echo htmlspecialchars($truyen->tenTruyen)?></title>
 </head>
 
 <body>
@@ -85,6 +85,20 @@
                 <img src="/TMTManga/assets/truyentranh/<?php echo htmlspecialchars($truyen->idTruyen) ?>/Chuong<?php echo htmlspecialchars($_GET["chuong"]) ?>/<?php echo $i ?>.png">
             <?php } ?>
         </div>
+        
+        <div class="phancach"></div>
+        <div class="margin-left20vw" >
+                <button id="btn-truoc2"><i class="fas fa-chevron-left"></i> Chương trước</button>
+                <div class="dropdown-container">
+                    <div id="select-chapter"> Chương <?php echo htmlspecialchars($_GET["chuong"]) ?> <i class="fas fa-chevron-down"></i></div>
+                    <div class="content-dschuong">
+                        <?php for($i=0;$i<$truyen->soChuong;$i++){?>
+                            <a class="dropdown-btn" href="?controller=truyen&action=Doctruyentranh&idTruyen=<?php echo htmlspecialchars($truyen->idTruyen) ?>&chuong=<?php echo $i+1?>">Chương <?php echo $i+1?></a>
+                       <?php } ?>                        
+                    </div>
+                </div>
+                <button id="btn-sau2">Chương sau <i class="fas fa-chevron-right"></i></button>
+            </div>
     </main>
     <footer>
         <div class="footer-lienhe">
@@ -135,6 +149,24 @@
             window.location = "?controller=truyen&action=Doctruyentranh&idTruyen=" + urlParams.get('idTruyen') + "&chuong=" + (parseInt(myParam) + 1);
         }
         btnPre.onclick = function() {
+            window.location = "?controller=truyen&action=Doctruyentranh&idTruyen=" + urlParams.get('idTruyen') + "&chuong=" + (parseInt(myParam) - 1);
+        }
+        const btnNext2 = document.querySelector('#btn-sau2');
+        const btnPre2 = document.querySelector('#btn-truoc2');
+        if ((parseInt(myParam) + 1) > <?php echo htmlspecialchars($truyen->soChuong) ?>) {
+            btnNext2.disabled = true;
+            btnNext2.style.backgroundColor = '#adddce';
+            btnNext2.style.color = "white";
+        }
+        if ((parseInt(myParam) - 1) < 1) {
+            btnPre2.disabled = true;
+            btnPre2.style.backgroundColor = '#adddce';
+            btnPre2.style.color = "white";
+        }        
+        btnNext2.onclick = function() {
+            window.location = "?controller=truyen&action=Doctruyentranh&idTruyen=" + urlParams.get('idTruyen') + "&chuong=" + (parseInt(myParam) + 1);
+        }
+        btnPre2.onclick = function() {
             window.location = "?controller=truyen&action=Doctruyentranh&idTruyen=" + urlParams.get('idTruyen') + "&chuong=" + (parseInt(myParam) - 1);
         }
         console.log(<?php echo $truyen->soChuong ?>);

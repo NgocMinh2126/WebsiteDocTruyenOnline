@@ -94,6 +94,7 @@ header{
     font-family: 'Patrick Hand', cursive;
     font-weight: 800;
     font-size: 20px;
+    cursor: pointer;
 }
 .main-menu-btn:hover{
     color: #0db5b5;

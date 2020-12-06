@@ -1,18 +1,23 @@
 <?php
 require_once('controllers/base_controller.php');
-require_once('models/truyen.php');
+require_once('models/User.php');
 
-/*class TruyenController extends BaseController
+class PageController extends BaseController
 {
   function __construct()
   {
-    $this->folder = 'truyen';
+    $this->folder = 'page';
   }
 
-  public function index()
-  {
-    $truyen = Truyen::all();
-    $data = array('truyen' => $truyen);
-    $this->render('index', $data);
+  function Dangky(){
+
   }
-}*/
+
+  function Dangnhap(){
+    
+  }
+
+  function Admin(){
+
+  }
+}
