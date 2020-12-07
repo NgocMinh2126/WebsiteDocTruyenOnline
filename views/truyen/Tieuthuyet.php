@@ -1,18 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"><link href="https://fonts.googleapis.com/css2?family=Secular+One&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap" rel="stylesheet">  
-    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300&display=swap" rel="stylesheet">  
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Secular+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Grandstander:wght@100&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/2b3f16036e.js" crossorigin="anonymous"></script>
     <link href="/TMTManga/assets/css/Truyentranh_Tieuthuyet.css" rel="stylesheet">
     <title>MT Manga | Tiểu thuyết</title>
 </head>
+
 <body>
-<header>
+    <header>
         <img src="/TMTManga/assets/image/image/mtlogo7.png" class="img-logo">
         <div class="div-namepage">MT Manga</div>
         <div class="menu-bar">
@@ -31,179 +34,63 @@
     <main>
         <div class="main-menu-title">Tiểu thuyết</div>
         <div class="main-menu">
-            <a href="#" class="main-menu-btn">Top hot nhất</a>
-            <a href="#" class="main-menu-btn">Mới nhất</a>
-            <a href="#" class="main-menu-btn">Đã full</a>
-            <a href="#" class="main-menu-btn">Ngôn tình</a>
-            <a href="#" class="main-menu-btn">Cổ đại</a>
-            <a href="#" class="main-menu-btn">Tổng tài</a>
-            <a href="#" class="main-menu-btn">Kinh dị</a>
-            <div class="main-menu-theloai">
-                <div class="main-menu-theloai-title">Thêm <i class="fas fa-chevron-circle-right"></i></div>
-                <div class="main-menu-theloai-content">
-                    <a href="#" class="main-menu-theloai-btn">Hài hước</a>
-                    <a href="#" class="main-menu-theloai-btn">Xuyên không</a>
-                    <a href="#" class="main-menu-theloai-btn">Học đường</a>
-                    <a href="#" class="main-menu-theloai-btn">Showbiz</a>
-                    <a href="#" class="main-menu-theloai-btn">Trinh thám</a>
-                    <a href="#" class="main-menu-theloai-btn">Kiếm hiệp</a>
-                    <a href="#" class="main-menu-theloai-btn">Viễn tưởng</a>
+            <a href="?controller=truyen&action=Tieuthuyet" class="main-menu-btn" id="hotnhat-btn">Top hot nhất</a>
+            <a class="main-menu-btn" id="moinhat-btn" onclick="loadTieuThuyetByType('moiNhatTieuThuyet')">Mới nhất</a>
+            <a class="main-menu-btn" id="full-btn" onclick="loadTieuThuyetByType('fullTieuThuyet')">Đã full</a>
+            <?php if (count($listTheLoai) > 4) {
+                for ($i = 0; $i < 4; $i++) {
+                    $theloai = $listTheLoai[$i] ?>
+                    <a href="?controller=truyen&action=Tieuthuyet&idTheLoai=<?php echo htmlspecialchars($theloai->idTheLoai)?>" class="main-menu-btn"><?php echo htmlspecialchars($theloai->tenTheLoai) ?></a>
+                <?php }
+            } else {
+                for ($i = 0; $i < count($listTheLoai); $i++) {
+                    $theloai = $listTheLoai[$i]; ?>
+                    <a href="?controller=truyen&action=Tieuthuyet&idTheLoai=<?php echo htmlspecialchars($theloai->idTheLoai)?>" class="main-menu-theloai-btn"><?php echo htmlspecialchars($theloai->tenTheLoai) ?></a>
+            <?php }
+            } ?>
+            <?php if (count($listTheLoai) > 4) { ?>
+                <div class="main-menu-theloai">
+                    <div class="main-menu-theloai-title">Thêm <i class="fas fa-chevron-circle-right"></i></div>
+                    <div class="main-menu-theloai-content">
+                        <?php for ($i = 4; $i < count($listTheLoai); $i++) {
+                            $theloai = $listTheLoai[$i]; ?>
+                            <a href="?controller=truyen&action=Tieuthuyet&idTheLoai=<?php echo htmlspecialchars($theloai->idTheLoai)?>" class="main-menu-theloai-btn"><?php echo htmlspecialchars($theloai->tenTheLoai) ?></a>
+                        <?php } ?>
+                    </div>
                 </div>
-            </div>
+            <?php } ?>
+
         </div>
         <div class="main-dstruyen">
-            <a class="main-dstruyen-truyen" href="#">
-                <img src="./imgTruyen/imgBobimsuacuatienma.PNG">
-                <div class="main-dstruyen-tentruyen-ten">Bố bỉm sữa của tiên ma</div> 
-                <span class="main-dstruyen-tentruyen-span">Bố bỉm sữa của tiên ma</span>        
-                <div class="main-dstruyen-truyen-like">
-                    <i class="fas fa-thumbs-up"></i>19689
-                </div>
-            </a>
-            <a class="main-dstruyen-truyen" href="#">
-                <img src="./imgTruyen/imgTaxuyenkhongthanhhoanghaudocac.PNG">
-                <div class="main-dstruyen-tentruyen">
-                    <div class="main-dstruyen-tentruyen-ten">Ta xuyên không thành hoàng hậu độc ác</div>            
-                    <span class="main-dstruyen-tentruyen-span">Ta xuyên không thành hoàng hậu độc ác</span>     
-                </div> 
-                <div class="main-dstruyen-truyen-like">
-                    <i class="fas fa-thumbs-up"></i>19689
-                </div>
-            </a>
-            <a class="main-dstruyen-truyen" href="#">
-                <img src="./imgTruyen/imgNhapcotnoanhon.PNG">
-                <div class="main-dstruyen-tentruyen">
-                    <div class="main-dstruyen-tentruyen-ten">Nhập cốt noãn hôn</div>            
-                    <span class="main-dstruyen-tentruyen-span">Nhập cốt noãn hôn</span>     
-                </div> 
-                <div class="main-dstruyen-truyen-like">
-                    <i class="fas fa-thumbs-up"></i>19689
-                </div>
-            </a>
-            <a class="main-dstruyen-truyen" href="#">
-                <img src="./imgTruyen/imgChocgianchutichtongtai.PNG">
-                <div class="main-dstruyen-tentruyen">
-                    <div class="main-dstruyen-tentruyen-ten">Chọc giận chủ tịch tổng tài</div>            
-                    <span class="main-dstruyen-tentruyen-span">Chọc giận chủ tịch tổng tài</span>     
-                </div> 
-                <div class="main-dstruyen-truyen-like">
-                    <i class="fas fa-thumbs-up"></i>19689
-                </div>
-            </a>
-            <a class="main-dstruyen-truyen" href="#">
-                <img src="./imgTruyen/imgTraihusitinh.jpg">
-                <div class="main-dstruyen-tentruyen">
-                    <div class="main-dstruyen-tentruyen-ten">Trai hư si tình</div>            
-                    <span class="main-dstruyen-tentruyen-span">Trai hư si tình</span>     
-                </div> 
-                <div class="main-dstruyen-truyen-like">
-                    <i class="fas fa-thumbs-up"></i>19689
-                </div>
-            </a>
-            <a class="main-dstruyen-truyen" href="#">
-                <img src="./imgTruyen/imgDamhoaanhmong.PNG">
-                <div class="main-dstruyen-tentruyen">
-                    <div class="main-dstruyen-tentruyen-ten">Đàm hoa ánh mộng</div>            
-                    <span class="main-dstruyen-tentruyen-span">Đàm hoa ánh mộng</span>     
-                </div> 
-                <div class="main-dstruyen-truyen-like">
-                    <i class="fas fa-thumbs-up"></i>19689
-                </div>
-            </a>
-            <a class="main-dstruyen-truyen" href="#">
-                <img src="./imgTruyen/imgHaomonthiengioitienthe.PNG">
-                <div class="main-dstruyen-tentruyen">
-                    <div class="main-dstruyen-tentruyen-ten">Hào môn thiên giới tiền thê</div>            
-                    <span class="main-dstruyen-tentruyen-span">Hào môn thiên giới tiền thê</span>     
-                </div> 
-                <div class="main-dstruyen-truyen-like">
-                    <i class="fas fa-thumbs-up"></i>19689
-                </div>
-            </a>
-            <a class="main-dstruyen-truyen" href="#">
-                <img src="./imgTruyen/imgTongtaitaithuong.PNG">
-                <div class="main-dstruyen-tentruyen">
-                    <div class="main-dstruyen-tentruyen-ten">Tổng tài tại thượng</div>            
-                    <span class="main-dstruyen-tentruyen-span">Tổng tài tại thượng</span>     
-                </div> 
-                <div class="main-dstruyen-truyen-like">
-                    <i class="fas fa-thumbs-up"></i>19689
-                </div>
-            </a>
-            <a class="main-dstruyen-truyen" href="#">
-                <img src="./imgTruyen/imgOangiangotngao.PNG">
-                <div class="main-dstruyen-tentruyen">
-                    <div class="main-dstruyen-tentruyen-ten">Oan gia ngọt ngào</div>            
-                    <span class="main-dstruyen-tentruyen-span">Oan gia ngọt ngào</span>     
-                </div> 
-                <div class="main-dstruyen-truyen-like">
-                    <i class="fas fa-thumbs-up"></i>19689
-                </div>
-            </a>
-            <a class="main-dstruyen-truyen" href="#">
-                <img src="./imgTruyen/imgPhongkhoithuonglam.PNG">
-                <div class="main-dstruyen-tentruyen">
-                    <div class="main-dstruyen-tentruyen-ten">Phong khởi thương lam</div>            
-                    <span class="main-dstruyen-tentruyen-span">Phong khởi thương lam</span>     
-                </div> 
-                <div class="main-dstruyen-truyen-like">
-                    <i class="fas fa-thumbs-up"></i>19689
-                </div>
-            </a>
-            <a class="main-dstruyen-truyen" href="#">
-                <img src="./imgTruyen/imgTieuthudongdanh.PNG">
-                <div class="main-dstruyen-tentruyen">
-                    <div class="main-dstruyen-tentruyen-ten">Tiểu thư đỏng đảnh</div>            
-                    <span class="main-dstruyen-tentruyen-span">Tiểu thư đỏng đảnh</span>     
-                </div> 
-                <div class="main-dstruyen-truyen-like">
-                    <i class="fas fa-thumbs-up"></i>19689
-                </div>
-            </a>
-            <a class="main-dstruyen-truyen" href="#">
-                <img src="./imgTruyen/imgTongtaiDaddysieuquyenluc.PNG">
-                <div class="main-dstruyen-tentruyen">
-                    <div class="main-dstruyen-tentruyen-ten">Tổng tài daddy siêu quyền lực</div>            
-                    <span class="main-dstruyen-tentruyen-span">Tổng tài daddy siêu quyền lực</span>     
-                </div> 
-                <div class="main-dstruyen-truyen-like">
-                    <i class="fas fa-thumbs-up"></i>19689
-                </div>
-            </a>
-            <a class="main-dstruyen-truyen" href="#">
-                <img src="./imgTruyen/imgVuonggiasolonao.PNG">
-                <div class="main-dstruyen-tentruyen">
-                    <div class="main-dstruyen-tentruyen-ten">Vương gia solo nào!</div>            
-                    <span class="main-dstruyen-tentruyen-span">Vương gia solo nào!</span>    
-                </div> 
-                <div class="main-dstruyen-truyen-like">
-                    <i class="fas fa-thumbs-up"></i>19689
-                </div>
-            </a>
-            <a class="main-dstruyen-truyen" href="#">
-                <img src="./imgTruyen/imgNangmaikhongdepbangem.PNG">
-                <div class="main-dstruyen-tentruyen">
-                    <div class="main-dstruyen-tentruyen-ten">Nắng mai không đẹp bằng em</div>            
-                    <span class="main-dstruyen-tentruyen-span">Nắng mai không đẹp bằng em</span>     
-                </div> 
-                <div class="main-dstruyen-truyen-like">
-                    <i class="fas fa-thumbs-up"></i>19689
-                </div>
-            </a>
-            <a class="main-dstruyen-truyen" href="#">
-                <img src="./imgTruyen/imgDauladailuc.PNG">
-                <div class="main-dstruyen-tentruyen">
-                    <div class="main-dstruyen-tentruyen-ten">Đấu la đại lục</div>            
-                    <span class="main-dstruyen-tentruyen-span">Đấu la đại lục</span>     
-                </div> 
-                <div class="main-dstruyen-truyen-like">
-                    <i class="fas fa-thumbs-up"></i>19689
-                </div>
-            </a>
+            <?php if (count($listTieuThuyet) > 15) {
+                for ($i = 0; $i < 15; $i++) {
+                    $truyen = $listTieuThuyet[$i]; ?>
+                    <a class="main-dstruyen-truyen" href="?controller=truyen&action=Truyendetail&idTruyen=<?php echo htmlspecialchars($truyen->idTruyen) ?>">
+                        <img src="<?php echo htmlspecialchars($truyen->anhBia) ?>">
+                        <div class="main-dstruyen-tentruyen-ten"><?php echo htmlspecialchars($truyen->tenTruyen) ?></div>
+                        <span class="main-dstruyen-tentruyen-span"><?php echo htmlspecialchars($truyen->tenTruyen) ?></span>
+                        <div class="main-dstruyen-truyen-like">
+                            <i class="fas fa-thumbs-up"></i><?php echo htmlspecialchars($truyen->luotLike) ?>
+                        </div>
+                    </a>
+                <?php }
+            } else {
+                for ($i = 0; $i < count($listTieuThuyet); $i++) {
+                    $truyen = $listTieuThuyet[$i]; ?>
+                    <a class="main-dstruyen-truyen" href="?controller=truyen&action=Truyendetail&idTruyen=<?php echo htmlspecialchars($truyen->idTruyen) ?>">
+                        <img src="<?php echo htmlspecialchars($truyen->anhBia) ?>">
+                        <div class="main-dstruyen-tentruyen-ten"><?php echo htmlspecialchars($truyen->tenTruyen) ?></div>
+                        <span class="main-dstruyen-tentruyen-span"><?php echo htmlspecialchars($truyen->tenTruyen) ?></span>
+                        <div class="main-dstruyen-truyen-like">
+                            <i class="fas fa-thumbs-up"></i><?php echo htmlspecialchars($truyen->luotLike) ?>
+                        </div>
+                    </a>
+            <?php }
+            } ?>
         </div>
         <div class="chuyentrang-container">
-            <button class="chuyentrang-btn" >Trang trước</button>
-            <button class="chuyentrang-btn">Trang sau</button>
+            <button class="chuyentrang-btn hover" id="trangtruoc-btn">Trang trước</button>
+            <button class="chuyentrang-btn hover" id="trangsau-btn">Trang sau</button>
         </div>
     </main>
     <footer>
@@ -232,8 +119,152 @@
             <a href="#" class="footer-menu-btn-special">Chính sách và quyền riêng tư</a>
         </div>
         <div class="footer-banquyen">
-            © 2020 Bản quyền thuộc về Team TMT - MT Manga 
+            © 2020 Bản quyền thuộc về Team TMT - MT Manga
         </div>
     </footer>
+    <script>
+        var truyen = [];
+        var tranghientai = 1;
+        trangtruoc_btn = document.querySelector("#trangtruoc-btn");
+        trangsau_btn = document.querySelector("#trangsau-btn");
+        if (trangtruoc_btn.classList.contains('hover')) {
+            trangtruoc_btn.classList.remove('hover');
+        }
+        trangtruoc_btn.disabled = true;
+        <?php for ($i = 0; $i < count($listTieuThuyet); $i++) {
+            $tt = $listTieuThuyet[$i]; ?>
+            truyen[<?php echo $i ?>] = {
+                idTruyen: <?php echo $tt->idTruyen ?>,
+                tenTruyen: '<?php echo $tt->tenTruyen ?>',
+                moTa: '<?php echo ($tt->moTa) ?>',
+                soChuong: <?php echo ($tt->soChuong) ?>,
+                luotLike: <?php echo ($tt->luotLike) ?>,
+                anhBia: '<?php echo ($tt->anhBia) ?>',
+                tinhTrang: '<?php echo ($tt->tinhTrang) ?>',
+                idTacgia: <?php echo ($tt->idTacGia) ?>,
+                loaiTruyen: <?php echo ($tt->loaiTruyen) ?>,
+                ngayDang: '<?php echo ($tt->ngayDang) ?>'
+            };
+        <?php } ?>
+        console.log("so truyen: " + truyen.length);
+        var soluongtruyen = truyen.length;
+        var main_dstruyen = document.querySelector(".main-dstruyen");
+        var sotrang = 1;
+        if (soluongtruyen < 15) {
+            if (trangsau_btn.classList.contains('hover')) {
+                trangsau_btn.classList.remove('hover');
+            }
+            trangsau_btn.disabled = true
+        } else {
+            if (soluongtruyen % 15 == 0) {
+                sotrang = soluongtruyen / 15;
+            } else {
+                sotrang = parseInt(soluongtruyen / 15) + 1;
+            }
+            trangsau_btn.addEventListener('click', function() {
+                main_dstruyen.innerHTML = ``;
+                if (trangtruoc_btn.classList.contains('hover') == false) {
+                    trangtruoc_btn.classList.add('hover');
+                }
+                trangtruoc_btn.disabled = false;
+                var min = tranghientai * 15;
+                var max = (tranghientai + 1) * 15;
+                tranghientai++;
+                console.log(tranghientai);
+                if (tranghientai == sotrang) {
+                    if (trangsau_btn.classList.contains('hover')) {
+                        trangsau_btn.classList.remove('hover');
+                    }
+                    trangsau_btn.disabled = true;
+                    for (let i = min; i < soluongtruyen; i++) {
+                        main_dstruyen.innerHTML += `
+                        <a class="main-dstruyen-truyen" href="?controller=truyen&action=Truyendetail&idTruyen=${truyen[i].idTruyen}">
+                            <img src="${truyen[i].anhBia}">
+                            <div class="main-dstruyen-tentruyen">
+                                <div class="main-dstruyen-tentruyen-ten">${truyen[i].tenTruyen}</div>            
+                                <span class="main-dstruyen-tentruyen-span">${truyen[i].tenTruyen}</span>     
+                            </div> 
+                            <div class="main-dstruyen-truyen-like">
+                                <i class="fas fa-thumbs-up"></i>${truyen[i].luotLike}
+                            </div>
+                        </a>`
+                    }
+                } else {
+                    for (let i = min; i < max; i++) {
+                        main_dstruyen.innerHTML += `
+                        <a class="main-dstruyen-truyen" href="?controller=truyen&action=Truyendetail&idTruyen=${truyen[i].idTruyen}">
+                            <img src="${truyen[i].anhBia}">
+                            <div class="main-dstruyen-tentruyen">
+                                <div class="main-dstruyen-tentruyen-ten">${truyen[i].tenTruyen}</div>            
+                                <span class="main-dstruyen-tentruyen-span">${truyen[i].tenTruyen}</span>     
+                            </div> 
+                            <div class="main-dstruyen-truyen-like">
+                                <i class="fas fa-thumbs-up"></i>${truyen[i].luotLike}
+                            </div>
+                        </a>`
+                    }
+                }
+            });
+            trangtruoc_btn.addEventListener('click', function() {
+                main_dstruyen.innerHTML = ``;
+                if (trangsau_btn.classList.contains('hover') == false) {
+                    trangsau_btn.classList.add('hover');
+                }
+                trangsau_btn.disabled = false;
+                tranghientai--;
+                console.log(tranghientai);
+                var min = (tranghientai - 1) * 15;
+                var max = tranghientai * 15;
+                if (tranghientai == 1) {
+                    if (trangtruoc_btn.classList.contains('hover')) {
+                        trangtruoc_btn.classList.remove('hover');
+                    }
+                    trangtruoc_btn.disabled = true;
+                    for(let i= min; i<max;i++){
+                        main_dstruyen.innerHTML+=`
+                        <a class="main-dstruyen-truyen" href="?controller=truyen&action=Truyendetail&idTruyen=${truyen[i].idTruyen}">
+                            <img src="${truyen[i].anhBia}">
+                            <div class="main-dstruyen-tentruyen">
+                                <div class="main-dstruyen-tentruyen-ten">${truyen[i].tenTruyen}</div>            
+                                <span class="main-dstruyen-tentruyen-span">${truyen[i].tenTruyen}</span>     
+                            </div> 
+                            <div class="main-dstruyen-truyen-like">
+                                <i class="fas fa-thumbs-up"></i>${truyen[i].luotLike}
+                            </div>
+                        </a>`
+                    }
+                }else{
+                    for(let i= min; i<max;i++){
+                        main_dstruyen.innerHTML+=`
+                        <a class="main-dstruyen-truyen" href="?controller=truyen&action=Truyendetail&idTruyen=${truyen[i].idTruyen}">
+                            <img src="${truyen[i].anhBia}">
+                            <div class="main-dstruyen-tentruyen">
+                                <div class="main-dstruyen-tentruyen-ten">${truyen[i].tenTruyen}</div>            
+                                <span class="main-dstruyen-tentruyen-span">${truyen[i].tenTruyen}</span>     
+                            </div> 
+                            <div class="main-dstruyen-truyen-like">
+                                <i class="fas fa-thumbs-up"></i>${truyen[i].luotLike}
+                            </div>
+                        </a>`
+                    }
+                }
+            });
+        }
+    </script>    
+    <script>
+        var main_dstruyen=document.querySelector(".main-dstruyen");
+        function loadTieuThuyetByType(idTheLoai){
+            document.querySelector("#trangtruoc-btn").disabled=true;
+            document.querySelector("#trangsau-btn").disabled=true;
+            var xhtml = new XMLHttpRequest();
+            xhtml.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    main_dstruyen.innerHTML = this.responseText;
+                }
+            };
+            xhtml.open("GET", "/TMTManga/data/" + idTheLoai + ".php", true);
+            xhtml.send();
+        }
+    </script>
 </body>
 </html>

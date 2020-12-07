@@ -79,44 +79,10 @@
             }
             return $list;
         }
-        //lay dsach truyen tranh theo luot like tang dan
-        static function getTruyenTranh(){
-            $list=[];
-            $db=DB::getInstance();
-            $query= $db->query('SELECT * FROM truyen WHERE LoaiTruyen=0 ORDER BY LuotLike desc');
-            foreach($query-> fetchAll() as $item){
-                $tr= new Truyen($item['IDTruyen'], $item['TenTruyen'], $item['MoTa'], $item['SoChuong'],$item['LuotLike'], $item['AnhBia'],$item['TinhTrang'],$item['IDTacGia'],$item['LoaiTruyen'],$item['NgayDang']);
-                $list[] = $tr;
-            }
-            return $list;
-        }
         static function getTruyenByType($idTheLoai){
             $list=[];
             $db=DB::getInstance();
             $query= $db->query('SELECT *FROM truyen WHERE IDTruyen in(SELECT IDTruyen FROM theloaitruyen WHERE IDTheLoai= '.$idTheLoai.')');
-            foreach($query-> fetchAll() as $item){
-                $tr= new Truyen($item['IDTruyen'], $item['TenTruyen'], $item['MoTa'], $item['SoChuong'],$item['LuotLike'], $item['AnhBia'],$item['TinhTrang'],$item['IDTacGia'],$item['LoaiTruyen'],$item['NgayDang']);
-                $list[] = $tr;
-            }
-            return $list;
-        }
-        //lay truyen co the loai la the $idTheloai
-        static function getTruyenTranhByType($idTheLoai){
-            $list=[];
-            $db=DB::getInstance();
-            $query=$db->query("SELECT * FROM truyen WHERE LoaiTruyen=0 AND IDTruyen in(
-                SELECT IDTruyen FROM theloaitruyen WHERE IDTheLoai=$idTheLoai
-            )");
-            foreach($query->fetchAll() as $item){
-                $tr= new Truyen($item['IDTruyen'], $item['TenTruyen'], $item['MoTa'], $item['SoChuong'],$item['LuotLike'], $item['AnhBia'],$item['TinhTrang'],$item['IDTacGia'],$item['LoaiTruyen'],$item['NgayDang']);
-                $list[]=$tr;
-            }
-            return $list;
-        }
-        static function getTieuThuyet(){
-            $list=[];
-            $db=DB::getInstance();
-            $query= $db->query('SELECT * FROM truyen WHERE LoaiTruyen=1 ORDER BY LuotLike desc');
             foreach($query-> fetchAll() as $item){
                 $tr= new Truyen($item['IDTruyen'], $item['TenTruyen'], $item['MoTa'], $item['SoChuong'],$item['LuotLike'], $item['AnhBia'],$item['TinhTrang'],$item['IDTacGia'],$item['LoaiTruyen'],$item['NgayDang']);
                 $list[] = $tr;
@@ -133,13 +99,6 @@
             }
             return $listTruyenMoi;
         }
-        static function getTruyenID($idTruyen){            
-            $db=DB::getInstance();
-            $query=$db->query("SELECT *FROM truyen WHERE IDTruyen=$idTruyen");
-            $item=$query->fetch();
-            $truyen= new Truyen($item['IDTruyen'], $item['TenTruyen'], $item['MoTa'], $item['SoChuong'],$item['LuotLike'], $item['AnhBia'],$item['TinhTrang'],$item['IDTacGia'],$item['LoaiTruyen'],$item['NgayDang']);
-            return $truyen;
-        }  
         static function getTruyenFull(){
             $listTruyenFull=[];
             $db=DB::getInstance();
@@ -150,5 +109,67 @@
             }
             return $listTruyenFull;
         }
+        static function getTruyenHot(){
+            $list=[];
+            $db=DB::getInstance();
+            $query= $db->query('SELECT * FROM truyen ORDER BY LuotLike desc');
+            foreach($query-> fetchAll() as $item){
+                $tr= new Truyen($item['IDTruyen'], $item['TenTruyen'], $item['MoTa'], $item['SoChuong'],$item['LuotLike'], $item['AnhBia'],$item['TinhTrang'],$item['IDTacGia'],$item['LoaiTruyen'],$item['NgayDang']);
+                $list[] = $tr;
+            }
+            return $list;
+        }
+        //lay dsach truyen tranh 
+        static function getTruyenTranh(){
+            $list=[];
+            $db=DB::getInstance();
+            $query= $db->query('SELECT * FROM truyen WHERE LoaiTruyen=0 ORDER BY LuotLike desc');
+            foreach($query-> fetchAll() as $item){
+                $tr= new Truyen($item['IDTruyen'], $item['TenTruyen'], $item['MoTa'], $item['SoChuong'],$item['LuotLike'], $item['AnhBia'],$item['TinhTrang'],$item['IDTacGia'],$item['LoaiTruyen'],$item['NgayDang']);
+                $list[] = $tr;
+            }
+            return $list;
+        }
+        static function getTruyenTranhByType($idTheLoai){
+            $list=[];
+            $db=DB::getInstance();
+            $query=$db->query("SELECT * FROM truyen WHERE LoaiTruyen=0 AND IDTruyen in(
+                SELECT IDTruyen FROM theloaitruyen WHERE IDTheLoai=$idTheLoai
+            )");
+            foreach($query->fetchAll() as $item){
+                $tr= new Truyen($item['IDTruyen'], $item['TenTruyen'], $item['MoTa'], $item['SoChuong'],$item['LuotLike'], $item['AnhBia'],$item['TinhTrang'],$item['IDTacGia'],$item['LoaiTruyen'],$item['NgayDang']);
+                $list[]=$tr;
+            }
+            return $list;
+        }
+        // lay danh sach tiểu thuyết
+        static function getTieuThuyet(){
+            $list=[];
+            $db=DB::getInstance();
+            $query= $db->query('SELECT * FROM truyen WHERE LoaiTruyen=1 ORDER BY LuotLike desc');
+            foreach($query-> fetchAll() as $item){
+                $tr= new Truyen($item['IDTruyen'], $item['TenTruyen'], $item['MoTa'], $item['SoChuong'],$item['LuotLike'], $item['AnhBia'],$item['TinhTrang'],$item['IDTacGia'],$item['LoaiTruyen'],$item['NgayDang']);
+                $list[] = $tr;
+            }
+            return $list;
+        }
+        static function getTieuThuyetByType($idTheLoai){
+            $list=[];
+            $db=DB::getInstance();
+            $query= $db->query("SELECT * FROM truyen WHERE LoaiTruyen=1 AND IDTruyen in
+                (SELECT IDTruyen FROM theloaitruyen WHERE IDTheLoai=$idTheLoai)");
+            foreach($query-> fetchAll() as $item){
+                $tr= new Truyen($item['IDTruyen'], $item['TenTruyen'], $item['MoTa'], $item['SoChuong'],$item['LuotLike'], $item['AnhBia'],$item['TinhTrang'],$item['IDTacGia'],$item['LoaiTruyen'],$item['NgayDang']);
+                $list[] = $tr;
+            }
+            return $list;
+        }
+        static function getTruyenID($idTruyen){            
+            $db=DB::getInstance();
+            $query=$db->query("SELECT *FROM truyen WHERE IDTruyen=$idTruyen");
+            $item=$query->fetch();
+            $truyen= new Truyen($item['IDTruyen'], $item['TenTruyen'], $item['MoTa'], $item['SoChuong'],$item['LuotLike'], $item['AnhBia'],$item['TinhTrang'],$item['IDTacGia'],$item['LoaiTruyen'],$item['NgayDang']);
+            return $truyen;
+        }  
     }    
 ?>

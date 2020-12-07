@@ -34,9 +34,9 @@
     <main>
         <div class="main-menu-title">Tất cả truyện</div>
         <div class="main-menu">
-            <a href="#" class="main-menu-btn">Top hot nhất</a>
-            <a href="#" class="main-menu-btn">Mới nhất</a>
-            <a href="#" class="main-menu-btn">Đã full</a>
+            <a class="main-menu-btn" onclick="loadTruyenByType('hotTruyen')">Top hot nhất</a>
+            <a href="?controller=truyen&action=Alltruyen" class="main-menu-btn">Mới nhất</a>
+            <a class="main-menu-btn" onclick="loadTruyenByType('fullTruyen')">Đã full</a>
             <?php if (count($listTheLoai) > 4) {
                 for ($i = 0; $i < 4; $i++) {
                     $theloai = $listTheLoai[$i]; ?>
@@ -156,145 +156,125 @@
                 ngayDang: '<?php echo ($tt->ngayDang) ?>'
             };
         <?php } ?>
-        console.log(truyen.length);
-        if (truyen.length < 15) {
+        console.log("so truyen: " + truyen.length);
+        var soluongtruyen = truyen.length;
+        var main_dstruyen = document.querySelector(".main-dstruyen");
+        var sotrang = 1;
+        if (soluongtruyen < 15) {
             if (trangsau_btn.classList.contains('hover')) {
                 trangsau_btn.classList.remove('hover');
             }
-            trangsau_btn.disabled = true;
-        }
-        var main_dstruyen = document.querySelector(".main-dstruyen");
-        var sotrang = 1;
-        if (truyen.length % 15 == 0) {
-            sotrang = truyen.length / 15;
-            console.log('so trang' + sotrang);
+            trangsau_btn.disabled = true
         } else {
-            sotrang = parseInt(truyen.length / 15) + 1;
-            console.log('so trang' + sotrang);
-        }
-        trangsau_btn.addEventListener('click', function() {
-            if (trangtruoc_btn.classList.contains("hover") == false) {
-                trangtruoc_btn.classList.add("hover");
+            if (soluongtruyen % 15 == 0) {
+                sotrang = soluongtruyen / 15;
+            } else {
+                sotrang = parseInt(soluongtruyen / 15) + 1;
             }
-            trangtruoc_btn.disabled = false;
-            main_dstruyen.innerHTML = ``;
-            var min = tranghientai * 15;
-            var max = (tranghientai + 1) * 15;
-            if (tranghientai < sotrang - 1) {
-                if (max < truyen.length) {
-                    for (let i = min; i < max; i++) {
-                        var loaiTruyen;
-                        if (truyen[i].loaiTruyen == 0) {
-                            loaiTruyen = "Truyện tranh";
-                        } else {
-                            loaiTruyen = "Tiểu thuyết";
-                        }
-                        main_dstruyen.innerHTML += `
-                    <a class="main-dstruyen-truyen" href="?controller=truyen&action=Truyendetail&idTruyen=${truyen[i].idTruyen}">
-                        <img src="${truyen[i].anhBia}">
-                        <div class="main-dstruyen-tentruyen">
-                            <div class="main-dstruyen-tentruyen-ten">${truyen[i].tenTruyen}</div>            
-                            <span class="main-dstruyen-tentruyen-span">${truyen[i].tenTruyen}</span>     
-                        </div> 
-                        <div class="main-dstruyen-truyen-like">
-                            <i class="fas fa-thumbs-up"></i>${truyen[i].luotLike}
-                        </div>
-                        <div class="main-dstruyen-loaitruyen"> ${loaiTruyen}</div>
-                    </a>
-                    `
-                    }
-                    tranghientai++;
-                    console.log('trang hien tai: ' + tranghientai);
+            trangsau_btn.addEventListener('click', function() {
+                main_dstruyen.innerHTML = ``;
+                if (trangtruoc_btn.classList.contains('hover') == false) {
+                    trangtruoc_btn.classList.add('hover');
                 }
-            } else if (tranghientai == sotrang - 1) {
-                for (let i = min; i < truyen.length; i++) {
-                    var loaiTruyen;
-                    if (truyen[i].loaiTruyen == 0) {
-                        loaiTruyen = "Truyện tranh";
-                    } else {
-                        loaiTruyen = "Tiểu thuyết";
-                    }
-                    main_dstruyen.innerHTML += `
-                    <a class="main-dstruyen-truyen" href="?controller=truyen&action=Truyendetail&idTruyen=${truyen[i].idTruyen}">
-                        <img src="${truyen[i].anhBia}">
-                        <div class="main-dstruyen-tentruyen">
-                            <div class="main-dstruyen-tentruyen-ten">${truyen[i].tenTruyen}</div>            
-                            <span class="main-dstruyen-tentruyen-span">${truyen[i].tenTruyen}</span>     
-                        </div> 
-                        <div class="main-dstruyen-truyen-like">
-                            <i class="fas fa-thumbs-up"></i>${truyen[i].luotLike}
-                        </div>
-                        <div class="main-dstruyen-loaitruyen"> ${loaiTruyen}</div>
-                    </a>
-                    `
-                }
+                trangtruoc_btn.disabled = false;
+                var min = tranghientai * 15;
+                var max = (tranghientai + 1) * 15;
                 tranghientai++;
-                console.log('trang hien tai: ' + tranghientai);
-                if (trangsau_btn.classList.contains('hover')) {
-                    trangsau_btn.classList.remove('hover');
-                }
-                trangsau_btn.disabled = true;
-            }
-        })
-        trangtruoc_btn.addEventListener('click', function() {
-            if (trangsau_btn.classList.contains("hover") == false) {
-                trangsau_btn.classList.add("hover");
-            }
-            main_dstruyen.innerHTML = ``;
-            trangsau_btn.disabled = false;
-            tranghientai--;
-            console.log('trang hien tai: ' + tranghientai);
-            var min = (tranghientai - 1) * 15;
-            var max = tranghientai * 15;
-            if (tranghientai > 1) {
-                for (let i = min; i < max; i++) {
-                    var loaiTruyen;
-                    if (truyen[i].loaiTruyen == 0) {
-                        loaiTruyen = "Truyện tranh";
-                    } else {
-                        loaiTruyen = "Tiểu thuyết";
+                console.log(tranghientai);
+                if (tranghientai == sotrang) {
+                    if (trangsau_btn.classList.contains('hover')) {
+                        trangsau_btn.classList.remove('hover');
                     }
-                    main_dstruyen.innerHTML += `
-                    <a class="main-dstruyen-truyen" href="?controller=truyen&action=Truyendetail&idTruyen=${truyen[i].idTruyen}">
-                        <img src="${truyen[i].anhBia}">
-                        <div class="main-dstruyen-tentruyen">
-                            <div class="main-dstruyen-tentruyen-ten">${truyen[i].tenTruyen}</div>            
-                            <span class="main-dstruyen-tentruyen-span">${truyen[i].tenTruyen}</span>     
-                        </div> 
-                        <div class="main-dstruyen-truyen-like">
-                            <i class="fas fa-thumbs-up"></i>${truyen[i].luotLike}
-                        </div>
-                        <div class="main-dstruyen-loaitruyen"> ${loaiTruyen}</div>
-                    </a>`
-                }
-            } else if (tranghientai == 1) {
-                for (let i = 0; i < max; i++) {
-                    var loaiTruyen;
-                    if (truyen[i].loaiTruyen == 0) {
-                        loaiTruyen = "Truyện tranh";
-                    } else {
-                        loaiTruyen = "Tiểu thuyết";
+                    trangsau_btn.disabled = true;
+                    for (let i = min; i < soluongtruyen; i++) {
+                        main_dstruyen.innerHTML += `
+                        <a class="main-dstruyen-truyen" href="?controller=truyen&action=Truyendetail&idTruyen=${truyen[i].idTruyen}">
+                            <img src="${truyen[i].anhBia}">
+                            <div class="main-dstruyen-tentruyen">
+                                <div class="main-dstruyen-tentruyen-ten">${truyen[i].tenTruyen}</div>            
+                                <span class="main-dstruyen-tentruyen-span">${truyen[i].tenTruyen}</span>     
+                            </div> 
+                            <div class="main-dstruyen-truyen-like">
+                                <i class="fas fa-thumbs-up"></i>${truyen[i].luotLike}
+                            </div>
+                        </a>`
                     }
-                    main_dstruyen.innerHTML += `
-                    <a class="main-dstruyen-truyen" href="?controller=truyen&action=Truyendetail&idTruyen=${truyen[i].idTruyen}">
-                        <img src="${truyen[i].anhBia}">
-                        <div class="main-dstruyen-tentruyen">
-                            <div class="main-dstruyen-tentruyen-ten">${truyen[i].tenTruyen}</div>            
-                            <span class="main-dstruyen-tentruyen-span">${truyen[i].tenTruyen}</span>     
-                        </div> 
-                        <div class="main-dstruyen-truyen-like">
-                            <i class="fas fa-thumbs-up"></i>${truyen[i].luotLike}
-                        </div>
-                        <div class="main-dstruyen-loaitruyen"> ${loaiTruyen}</div>
-                    </a>`
+                } else {
+                    for (let i = min; i < max; i++) {
+                        main_dstruyen.innerHTML += `
+                        <a class="main-dstruyen-truyen" href="?controller=truyen&action=Truyendetail&idTruyen=${truyen[i].idTruyen}">
+                            <img src="${truyen[i].anhBia}">
+                            <div class="main-dstruyen-tentruyen">
+                                <div class="main-dstruyen-tentruyen-ten">${truyen[i].tenTruyen}</div>            
+                                <span class="main-dstruyen-tentruyen-span">${truyen[i].tenTruyen}</span>     
+                            </div> 
+                            <div class="main-dstruyen-truyen-like">
+                                <i class="fas fa-thumbs-up"></i>${truyen[i].luotLike}
+                            </div>
+                        </a>`
+                    }
                 }
-                if (trangtruoc_btn.classList.contains("hover") == true) {
-                    trangtruoc_btn.classList.remove("hover");
+            });
+            trangtruoc_btn.addEventListener('click', function() {
+                main_dstruyen.innerHTML = ``;
+                if (trangsau_btn.classList.contains('hover') == false) {
+                    trangsau_btn.classList.add('hover');
                 }
-                trangtruoc_btn.disabled = true;
-            }
-
-        })
+                trangsau_btn.disabled = false;
+                tranghientai--;
+                console.log(tranghientai);
+                var min = (tranghientai - 1) * 15;
+                var max = tranghientai * 15;
+                if (tranghientai == 1) {
+                    if (trangtruoc_btn.classList.contains('hover')) {
+                        trangtruoc_btn.classList.remove('hover');
+                    }
+                    trangtruoc_btn.disabled = true;
+                    for(let i= min; i<max;i++){
+                        main_dstruyen.innerHTML+=`
+                        <a class="main-dstruyen-truyen" href="?controller=truyen&action=Truyendetail&idTruyen=${truyen[i].idTruyen}">
+                            <img src="${truyen[i].anhBia}">
+                            <div class="main-dstruyen-tentruyen">
+                                <div class="main-dstruyen-tentruyen-ten">${truyen[i].tenTruyen}</div>            
+                                <span class="main-dstruyen-tentruyen-span">${truyen[i].tenTruyen}</span>     
+                            </div> 
+                            <div class="main-dstruyen-truyen-like">
+                                <i class="fas fa-thumbs-up"></i>${truyen[i].luotLike}
+                            </div>
+                        </a>`
+                    }
+                }else{
+                    for(let i= min; i<max;i++){
+                        main_dstruyen.innerHTML+=`
+                        <a class="main-dstruyen-truyen" href="?controller=truyen&action=Truyendetail&idTruyen=${truyen[i].idTruyen}">
+                            <img src="${truyen[i].anhBia}">
+                            <div class="main-dstruyen-tentruyen">
+                                <div class="main-dstruyen-tentruyen-ten">${truyen[i].tenTruyen}</div>            
+                                <span class="main-dstruyen-tentruyen-span">${truyen[i].tenTruyen}</span>     
+                            </div> 
+                            <div class="main-dstruyen-truyen-like">
+                                <i class="fas fa-thumbs-up"></i>${truyen[i].luotLike}
+                            </div>
+                        </a>`
+                    }
+                }
+            });
+        }
+    </script>
+    <script>
+        var main_dstruyen=document.querySelector(".main-dstruyen");
+        function loadTruyenByType(idTheLoai){
+            document.querySelector("#trangtruoc-btn").disabled=true;
+            document.querySelector("#trangsau-btn").disabled=true;
+            var xhtml = new XMLHttpRequest();
+            xhtml.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    main_dstruyen.innerHTML = this.responseText;
+                }
+            };
+            xhtml.open("GET", "/TMTManga/data/" + idTheLoai + ".php", true);
+            xhtml.send();
+        }
     </script>
 </body>
 

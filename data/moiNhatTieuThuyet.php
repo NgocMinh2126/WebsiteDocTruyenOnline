@@ -1,17 +1,17 @@
 <?php
 require_once("../connect.php");
 require_once("../models/Truyen.php");
-$listTruyenFull = Truyen::getTruyenFull();
-$listTruyenTranh = [];
+$listTruyenFull = Truyen::getTruyenMoi();
+$listTieuThuyet = [];
 for ($i = 0; $i < count($listTruyenFull); $i++) {
   $truyen = $listTruyenFull[$i];
-  if ($truyen->loaiTruyen == 0) {
-    $listTruyenTranh[] = $truyen;
+  if ($truyen->loaiTruyen == 1) {
+    $listTieuThuyet[] = $truyen;
   }
-}if(count($listTruyenTranh)>15){
-
+}
+if(count($listTieuThuyet)>15){
   for ($i = 0; $i < 15; $i++) {
-    $truyen = $listTruyenTranh[$i];?>
+    $truyen = $listTieuThuyet[$i];?>
       <a class="main-dstruyen-truyen" href="?controller=truyen&action=Truyendetail&idTruyen=<?php echo htmlspecialchars($truyen->idTruyen) ?>">
         <img src="<?php echo htmlspecialchars($truyen->anhBia) ?>">
         <div class="main-dstruyen-tentruyen-ten"><?php echo htmlspecialchars($truyen->tenTruyen) ?></div>
@@ -22,8 +22,8 @@ for ($i = 0; $i < count($listTruyenFull); $i++) {
       </a>
   <?php 
   }}else{
-    for ($i = 0; $i < count($listTruyenTranh); $i++) {
-      $truyen = $listTruyenTranh[$i];?>
+    for ($i = 0; $i < count($listTieuThuyet); $i++) {
+      $truyen = $listTieuThuyet[$i];?>
         <a class="main-dstruyen-truyen" href="?controller=truyen&action=Truyendetail&idTruyen=<?php echo htmlspecialchars($truyen->idTruyen) ?>">
           <img src="<?php echo htmlspecialchars($truyen->anhBia) ?>">
           <div class="main-dstruyen-tentruyen-ten"><?php echo htmlspecialchars($truyen->tenTruyen) ?></div>

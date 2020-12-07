@@ -77,7 +77,7 @@
             <?php $directory = "C:/xampp/htdocs/TMTManga/assets/truyentranh/" . $truyen->idTruyen . "/Chuong" . htmlspecialchars($_GET["chuong"]) . "/";
             $imgcount = 0;
             $fi = new FilesystemIterator(__DIR__, FilesystemIterator::SKIP_DOTS);
-            $img = glob($directory . "*.PNG");
+            $img = glob($directory . "*");
             if ($img) {
                 $imgcount = count($img);
             }
@@ -134,7 +134,7 @@
         const myParam = urlParams.get('chuong'); // == $_GET['chuong']
         console.log(myParam);
         const btnNext = document.querySelector('#btn-sau');
-        const btnPre = document.querySelector('#btn-truoc');
+        const btnPre = document.querySelector('#btn-truoc');        
         if ((parseInt(myParam) + 1) > <?php echo htmlspecialchars($truyen->soChuong) ?>) {
             btnNext.disabled = true;
             btnNext.style.backgroundColor = '#adddce';

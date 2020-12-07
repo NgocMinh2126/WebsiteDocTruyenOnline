@@ -16,7 +16,14 @@ if($action=='Truyentranh'){
   else{
     $controller->$action(); 
   }
-}else if($action=='Alltruyen'){
+}else if($action=='Tieuthuyet'){
+  if($idTheLoai != -1){
+    $controller->locTieuthuyet($idTheLoai);
+  }else{
+    $controller->$action();
+  }
+}
+else if($action=='Alltruyen'){
   if($idTheLoai !=-1){
     $controller->locAlltruyen($idTheLoai);
   }else{

@@ -49,8 +49,19 @@ class TruyenController extends BaseController
     }
     public function Tieuthuyet(){
         $listTieuThuyet = Truyen::getTieuThuyet();
+        $listTheLoai = TheLoai::getTheLoai();
         $data=array(
             'listTieuThuyet'=>$listTieuThuyet,
+            'listTheLoai'=>$listTheLoai,
+        );
+        $this->render('Tieuthuyet',$data);
+    }
+    public function locTieuthuyet($idTheLoai){
+        $listTieuThuyet= Truyen::getTieuThuyetByType($idTheLoai);
+        $listTheLoai=TheLoai::getTheLoai();
+        $data=array(
+            'listTieuThuyet'=>$listTieuThuyet,
+            'listTheLoai'=>$listTheLoai,
         );
         $this->render('Tieuthuyet',$data);
     }
