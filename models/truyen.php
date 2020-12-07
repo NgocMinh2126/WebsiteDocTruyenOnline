@@ -171,5 +171,16 @@
             $truyen= new Truyen($item['IDTruyen'], $item['TenTruyen'], $item['MoTa'], $item['SoChuong'],$item['LuotLike'], $item['AnhBia'],$item['TinhTrang'],$item['IDTacGia'],$item['LoaiTruyen'],$item['NgayDang']);
             return $truyen;
         }  
+        //Tim truyen
+        static function getTruyenBytext($search){
+            $list=[];
+            $db=DB::getInstance();
+            $query=$db->query("SELECT *FROM truyen WHERE TenTruyen LIKE '$search%'");
+            foreach($query-> fetchAll() as $item){
+                $tr= new Truyen($item['IDTruyen'], $item['TenTruyen'], $item['MoTa'], $item['SoChuong'],$item['LuotLike'], $item['AnhBia'],$item['TinhTrang'],$item['IDTacGia'],$item['LoaiTruyen'],$item['NgayDang']);
+                $list[] = $tr;
+            }
+            return $list;
+        }
     }    
 ?>

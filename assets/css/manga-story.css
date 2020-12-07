@@ -50,12 +50,17 @@ header{
     box-sizing: border-box;
 }
 .search-btn{
+    text-decoration: none;
+    color: black;
     height: 30px;
     width: 30px;
+    display: inline-block;
     border: none;
     outline: none;
     background: none;
     border-left: 1px #c3c3c3 solid;
+    line-height: 30px;
+    text-align: center;
 }
 .search-btn-input{
     background: none;

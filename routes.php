@@ -31,6 +31,8 @@ else if($action=='Alltruyen'){
   }
 }else if($action=='Doctruyentranh'){
   $controller->$action($idTruyen);
+}else if($action=='Search'){
+  $controller->$action($search);
 }
 else{
   $controller->$action(); 

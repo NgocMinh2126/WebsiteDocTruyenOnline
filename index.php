@@ -11,6 +11,9 @@
             if(isset($_GET['idTheLoai'])){
                 $idTheLoai=$_GET['idTheLoai'];
             }
+            if(isset($_GET['search'])){
+                $search=$_GET['search'];
+            }
         }else{
             $action = 'index';
         }

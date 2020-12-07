@@ -111,4 +111,15 @@ class TruyenController extends BaseController
         );
         $this->render('Doctruyentranh',$data);
     }
+    public function Search($search){
+        $listTruyen= Truyen::getTruyenMoi();
+        $listKQ=Truyen::getTruyenBytext($search);
+        $listTheLoai=TheLoai::getTheLoai();
+        $data=array(
+            'listTheLoai'=>$listTheLoai,
+            'listTruyen'=>$listTruyen,
+            'listKQ'=>$listKQ,
+        );
+        $this->render('Search',$data);
+    }
 }

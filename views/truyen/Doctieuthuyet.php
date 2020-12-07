@@ -26,8 +26,8 @@
             <a href="?controller=truyen&action=Tieuthuyet" class="menu-bar-btn">Tiểu thuyết</a>
         </div>
         <div class="search-bar">
-            <input type="text" class="search-btn-input">
-            <button class="search-btn"><i class="fas fa-search"></i></button>
+            <input type="text" class="search-btn-input" name="search-input">
+            <a class="search-btn" ><i class="fas fa-search"></i></a>
         </div>
         <div class="account-bar">
             <a href="" class="menu-bar-btn">Đăng nhập</a>
@@ -86,6 +86,16 @@
             © 2020 Bản quyền thuộc về Team TMT - MT Manga
         </div>
     </footer>
+    <script>
+        const search_btn= document.querySelector(".search-btn");
+        var input= document.querySelector(".search-btn-input");
+        search_btn.addEventListener('click',function(){
+            var text= input.value;
+            console.log(text);
+            var url="?controller=truyen&action=Search&search="+text;
+            search_btn.setAttribute('href',url);
+        })
+    </script>
 </body>
 
 </html>

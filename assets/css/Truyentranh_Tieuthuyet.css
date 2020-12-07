@@ -49,12 +49,17 @@ header{
     box-sizing: border-box;
 }
 .search-btn{
+    text-decoration: none;
+    color: black;
     height: 30px;
     width: 30px;
+    display: inline-block;
     border: none;
     outline: none;
     background: none;
     border-left: 1px #c3c3c3 solid;
+    line-height: 30px;
+    text-align: center;
 }
 .search-btn-input{
     background: none;
@@ -295,4 +300,16 @@ footer{
     margin-right: 41vw;
     margin-left: 41vw;
     cursor: context-menu;
+}
+
+/*PHAN DESIGN THÊM CHO TRANG SEARCH*/
+.main-ketqua{
+    display: flex;
+    margin-top: 2rem;
+    flex-wrap: wrap;
+}
+.duongphancach{
+    width: 100%;
+    height: 1rem;
+    border-bottom: 1px #c3c3c3 solid;
 }

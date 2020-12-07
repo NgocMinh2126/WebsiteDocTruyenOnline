@@ -27,8 +27,9 @@
             <input type="text" class="search-btn-input">
             <button class="search-btn"><i class="fas fa-search"></i></button>
         </div>
-        <div class="account-bar">
-            <a href="" class="menu-bar-btn">Đăng nhập</a>
+        <div class="search-bar">
+            <input type="text" class="search-btn-input" name="search-input">
+            <a class="search-btn" ><i class="fas fa-search"></i></a>
         </div>
     </header>
     <main>
@@ -275,6 +276,16 @@
             xhtml.open("GET", "/TMTManga/data/" + idTheLoai + ".php", true);
             xhtml.send();
         }
+    </script>
+    <script>
+        const search_btn= document.querySelector(".search-btn");
+        var input= document.querySelector(".search-btn-input");
+        search_btn.addEventListener('click',function(){
+            var text= input.value;
+            console.log(text);
+            var url="?controller=truyen&action=Search&search="+text;
+            search_btn.setAttribute('href',url);
+        })
     </script>
 </body>
 
