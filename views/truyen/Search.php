@@ -24,7 +24,7 @@
       <a href="?controller=truyen&action=Tieuthuyet" class="menu-bar-btn">Tiểu thuyết</a>
     </div>
     <div class="search-bar">
-      <input type="text" class="search-btn-input" name="search-input">
+      <input type="text" class="search-btn-input" name="search-input" onkeypress="RunSearchByEnterKey(event)">
       <a class="search-btn"><i class="fas fa-search"></i></a>
     </div>
     <div class="account-bar">
@@ -35,7 +35,9 @@
     <div class="main-menu-title">Kết quả tìm kiếm</div>
     <div class="duongphancach"></div>
     <div class="main-ketqua">
-      <?php for ($i = 0; $i < count($listKQ); $i++) {
+      <?php if(count($listKQ)==0){?>
+        <img src="/TMTManga/assets/image/image/searchnotfound.png" class="searchnotfound-img">
+      <?php }else{ for ($i = 0; $i < count($listKQ); $i++) {
         $truyen = $listKQ[$i]; ?>
         <a class="main-dstruyen-truyen" href="?controller=truyen&action=Truyendetail&idTruyen=<?php echo htmlspecialchars($truyen->idTruyen) ?>">
           <img src="<?php echo htmlspecialchars($truyen->anhBia) ?>">
@@ -45,7 +47,7 @@
             <i class="fas fa-thumbs-up"></i><?php echo htmlspecialchars($truyen->luotLike) ?>
           </div>
         </a>
-      <?php } ?>
+      <?php }} ?>
     </div>
     <div class="duongphancach"></div>
     <div class="main-menu">
@@ -281,7 +283,6 @@
   </script>
   <script>
     var main_dstruyen = document.querySelector(".main-dstruyen");
-
     function loadTruyenByType(idTheLoai) {
       document.querySelector("#trangtruoc-btn").disabled = true;
       document.querySelector("#trangsau-btn").disabled = true;
@@ -295,6 +296,35 @@
       xhtml.send();
     }
   </script>
+  <script>
+        const search_btn = document.querySelector(".search-btn");
+        var input = document.querySelector(".search-btn-input");
+        search_btn.addEventListener('click', function() {
+            var text = input.value;
+            if (text == '') {
+                console.log("ko co gi het");
+                alert("Vui lòng điền tên truyện");
+            } else {
+                console.log(text);
+                var url = "?controller=truyen&action=Search&search=" + text;
+                search_btn.setAttribute('href', url);
+            }
+        })
+
+        function RunSearchByEnterKey(e) {
+            if (e.keyCode == 13) {
+                var text = input.value;
+                if (text == '') {
+                    console.log("ko co gi het");
+                    alert("Vui lòng điền tên truyện");
+                } else {
+                    console.log(text);
+                    var url = "?controller=truyen&action=Search&search=" + text;
+                    window.location=url;
+                }
+            }
+        }
+    </script>
 </body>
 
 </html>

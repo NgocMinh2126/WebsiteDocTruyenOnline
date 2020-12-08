@@ -24,7 +24,7 @@
             <a href="?controller=truyen&action=Tieuthuyet" class="menu-bar-btn">Tiểu thuyết</a>
         </div>
         <div class="search-bar">
-            <input type="text" class="search-btn-input" name="search-input">
+            <input type="text" class="search-btn-input" name="search-input" onkeypress="RunSearchByEnterKey(event)">
             <a class="search-btn" ><i class="fas fa-search"></i></a>
         </div>
         <div class="account-bar">
@@ -225,5 +225,18 @@
             var url="?controller=truyen&action=Search&search="+text;
             search_btn.setAttribute('href',url);
         })
+        function RunSearchByEnterKey(e) {
+            if (e.keyCode == 13) {
+                var text = input.value;
+                if (text == '') {
+                    console.log("ko co gi het");
+                    alert("Vui lòng điền tên truyện");
+                } else {
+                    console.log(text);
+                    var url = "?controller=truyen&action=Search&search=" + text;
+                    window.location=url;
+                }
+            }
+        }
     </script>
 </body>

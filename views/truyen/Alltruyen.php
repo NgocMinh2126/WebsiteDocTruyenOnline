@@ -24,12 +24,11 @@
             <a href="?controller=truyen&action=Tieuthuyet" class="menu-bar-btn">Tiểu thuyết</a>
         </div>
         <div class="search-bar">
-            <input type="text" class="search-btn-input">
-            <button class="search-btn"><i class="fas fa-search"></i></button>
+            <input type="text" class="search-btn-input" name="search-input" onkeypress="RunSearchByEnterKey(event)">
+            <a class="search-btn"><i class="fas fa-search"></i></a>
         </div>
-        <div class="search-bar">
-            <input type="text" class="search-btn-input" name="search-input">
-            <a class="search-btn" ><i class="fas fa-search"></i></a>
+        <div class="account-bar">
+            <a href="" class="menu-bar-btn">Đăng nhập</a>
         </div>
     </header>
     <main>
@@ -41,7 +40,7 @@
             <?php if (count($listTheLoai) > 4) {
                 for ($i = 0; $i < 4; $i++) {
                     $theloai = $listTheLoai[$i]; ?>
-                    <a href="?controller=truyen&action=Alltruyen&idTheLoai=<?php echo htmlspecialchars($theloai->idTheLoai)?>" class="main-menu-btn"><?php echo htmlspecialchars($theloai->tenTheLoai) ?></a>
+                    <a href="?controller=truyen&action=Alltruyen&idTheLoai=<?php echo htmlspecialchars($theloai->idTheLoai) ?>" class="main-menu-btn"><?php echo htmlspecialchars($theloai->tenTheLoai) ?></a>
                 <?php }
             } else {
                 for ($i = 0; $i < count($listTheLoai); $i++) {
@@ -55,32 +54,15 @@
                     <?php if (count($listTheLoai) > 4) {
                         for ($i = 4; $i < count($listTheLoai); $i++) {
                             $theloai = $listTheLoai[$i]; ?>
-                            <a href="?controller=truyen&action=Alltruyen&idTheLoai=<?php echo htmlspecialchars($theloai->idTheLoai)?>" class="main-menu-theloai-btn"><?php echo htmlspecialchars($theloai->tenTheLoai) ?></a>
+                            <a href="?controller=truyen&action=Alltruyen&idTheLoai=<?php echo htmlspecialchars($theloai->idTheLoai) ?>" class="main-menu-theloai-btn"><?php echo htmlspecialchars($theloai->tenTheLoai) ?></a>
                     <?php }
                     } ?>
                 </div>
             </div>
         </div>
         <div class="main-dstruyen">
-            <?php if(count($listTruyen)>15) {for ($i = 0; $i < 15; $i++) {
-                $truyen = $listTruyen[$i]; ?>
-                <a class="main-dstruyen-truyen" href="?controller=truyen&action=Truyendetail&idTruyen=<?php echo htmlspecialchars($truyen->idTruyen) ?>">
-                    <img src="<?php echo htmlspecialchars($truyen->anhBia) ?>">
-                    <div class="main-dstruyen-tentruyen-ten"><?php echo htmlspecialchars($truyen->tenTruyen) ?></div>
-                    <span class="main-dstruyen-tentruyen-span"><?php echo htmlspecialchars($truyen->tenTruyen) ?></span>
-                    <div class="main-dstruyen-truyen-like">
-                        <i class="fas fa-thumbs-up"></i><?php echo htmlspecialchars($truyen->luotLike) ?>
-                    </div>
-                    <div class="main-dstruyen-loaitruyen">
-                        <?php if ($truyen->loaiTruyen == 0) {
-                            echo htmlspecialchars("Truyện tranh");
-                        } else {
-                            echo htmlspecialchars("Tiểu thuyết");
-                        } ?>
-                    </div>
-                </a>
-            <?php }}else{
-                for($i=0;$i<count($listTruyen);$i++){
+            <?php if (count($listTruyen) > 15) {
+                for ($i = 0; $i < 15; $i++) {
                     $truyen = $listTruyen[$i]; ?>
                     <a class="main-dstruyen-truyen" href="?controller=truyen&action=Truyendetail&idTruyen=<?php echo htmlspecialchars($truyen->idTruyen) ?>">
                         <img src="<?php echo htmlspecialchars($truyen->anhBia) ?>">
@@ -97,7 +79,27 @@
                             } ?>
                         </div>
                     </a>
-                <?php } } ?>
+                <?php }
+            } else {
+                for ($i = 0; $i < count($listTruyen); $i++) {
+                    $truyen = $listTruyen[$i]; ?>
+                    <a class="main-dstruyen-truyen" href="?controller=truyen&action=Truyendetail&idTruyen=<?php echo htmlspecialchars($truyen->idTruyen) ?>">
+                        <img src="<?php echo htmlspecialchars($truyen->anhBia) ?>">
+                        <div class="main-dstruyen-tentruyen-ten"><?php echo htmlspecialchars($truyen->tenTruyen) ?></div>
+                        <span class="main-dstruyen-tentruyen-span"><?php echo htmlspecialchars($truyen->tenTruyen) ?></span>
+                        <div class="main-dstruyen-truyen-like">
+                            <i class="fas fa-thumbs-up"></i><?php echo htmlspecialchars($truyen->luotLike) ?>
+                        </div>
+                        <div class="main-dstruyen-loaitruyen">
+                            <?php if ($truyen->loaiTruyen == 0) {
+                                echo htmlspecialchars("Truyện tranh");
+                            } else {
+                                echo htmlspecialchars("Tiểu thuyết");
+                            } ?>
+                        </div>
+                    </a>
+            <?php }
+            } ?>
         </div>
         <div class="chuyentrang-container">
             <button class="chuyentrang-btn hover" id="trangtruoc-btn">Trang trước</button>
@@ -231,8 +233,8 @@
                         trangtruoc_btn.classList.remove('hover');
                     }
                     trangtruoc_btn.disabled = true;
-                    for(let i= min; i<max;i++){
-                        main_dstruyen.innerHTML+=`
+                    for (let i = min; i < max; i++) {
+                        main_dstruyen.innerHTML += `
                         <a class="main-dstruyen-truyen" href="?controller=truyen&action=Truyendetail&idTruyen=${truyen[i].idTruyen}">
                             <img src="${truyen[i].anhBia}">
                             <div class="main-dstruyen-tentruyen">
@@ -244,9 +246,9 @@
                             </div>
                         </a>`
                     }
-                }else{
-                    for(let i= min; i<max;i++){
-                        main_dstruyen.innerHTML+=`
+                } else {
+                    for (let i = min; i < max; i++) {
+                        main_dstruyen.innerHTML += `
                         <a class="main-dstruyen-truyen" href="?controller=truyen&action=Truyendetail&idTruyen=${truyen[i].idTruyen}">
                             <img src="${truyen[i].anhBia}">
                             <div class="main-dstruyen-tentruyen">
@@ -263,10 +265,11 @@
         }
     </script>
     <script>
-        var main_dstruyen=document.querySelector(".main-dstruyen");
-        function loadTruyenByType(idTheLoai){
-            document.querySelector("#trangtruoc-btn").disabled=true;
-            document.querySelector("#trangsau-btn").disabled=true;
+        var main_dstruyen = document.querySelector(".main-dstruyen");
+
+        function loadTruyenByType(idTheLoai) {
+            document.querySelector("#trangtruoc-btn").disabled = true;
+            document.querySelector("#trangsau-btn").disabled = true;
             var xhtml = new XMLHttpRequest();
             xhtml.onreadystatechange = function() {
                 if (this.readyState == 4 && this.status == 200) {
@@ -278,14 +281,28 @@
         }
     </script>
     <script>
-        const search_btn= document.querySelector(".search-btn");
-        var input= document.querySelector(".search-btn-input");
-        search_btn.addEventListener('click',function(){
-            var text= input.value;
+        const search_btn = document.querySelector(".search-btn");
+        var input = document.querySelector(".search-btn-input");
+        search_btn.addEventListener('click', function() {
+            var text = input.value;
             console.log(text);
-            var url="?controller=truyen&action=Search&search="+text;
-            search_btn.setAttribute('href',url);
+            var url = "?controller=truyen&action=Search&search=" + text;
+            search_btn.setAttribute('href', url);
         })
+
+        function RunSearchByEnterKey(e) {
+            if (e.keyCode == 13) {
+                var text = input.value;
+                if (text == '') {
+                    console.log("ko co gi het");
+                    alert("Vui lòng điền tên truyện");
+                } else {
+                    console.log(text);
+                    var url = "?controller=truyen&action=Search&search=" + text;
+                    window.location = url;
+                }
+            }
+        }
     </script>
 </body>
 

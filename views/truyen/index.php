@@ -24,8 +24,8 @@
             <a href="?controller=truyen&action=Tieuthuyet" class="menu-bar-btn">Tiểu thuyết</a>
         </div>
         <div class="search-bar">
-            <input type="text" class="search-btn-input" name="search-input">
-            <a class="search-btn" ><i class="fas fa-search"></i></a>
+            <input type="text" class="search-btn-input" name="search-input" onkeypress="RunSearchByEnterKey(event)">
+            <a class="search-btn"><i class="fas fa-search"></i></a>
         </div>
         <div class="account-bar">
             <a href="" class="menu-bar-btn">Đăng nhập</a>
@@ -256,14 +256,33 @@
     </footer>
     <script src="/TMTManga/assets/javascript/MTmanga.js"></script>
     <script>
-        const search_btn= document.querySelector(".search-btn");
-        var input= document.querySelector(".search-btn-input");
-        search_btn.addEventListener('click',function(){
-            var text= input.value;
-            console.log(text);
-            var url="?controller=truyen&action=Search&search="+text;
-            search_btn.setAttribute('href',url);
+        const search_btn = document.querySelector(".search-btn");
+        var input = document.querySelector(".search-btn-input");
+        search_btn.addEventListener('click', function() {
+            var text = input.value;
+            if (text == '') {
+                console.log("ko co gi het");
+                alert("Vui lòng điền tên truyện");
+            } else {
+                console.log(text);
+                var url = "?controller=truyen&action=Search&search=" + text;
+                search_btn.setAttribute('href', url);
+            }
         })
+
+        function RunSearchByEnterKey(e) {
+            if (e.keyCode == 13) {
+                var text = input.value;
+                if (text == '') {
+                    console.log("ko co gi het");
+                    alert("Vui lòng điền tên truyện");
+                } else {
+                    console.log(text);
+                    var url = "?controller=truyen&action=Search&search=" + text;
+                    window.location=url;
+                }
+            }
+        }
     </script>
 </body>
 

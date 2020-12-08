@@ -192,6 +192,7 @@ header{
 .main-dstruyen-truyen-like{
     color: #6494ed;
     margin-top: 1rem;
+    font-size: 13px;
 }
 .main-dstruyen-loaitruyen{
     margin-top: 10px;
@@ -307,9 +308,14 @@ footer{
     display: flex;
     margin-top: 2rem;
     flex-wrap: wrap;
+    font-size: 1.5rem;
+    font-weight: 700;
 }
 .duongphancach{
     width: 100%;
     height: 1rem;
     border-bottom: 1px #c3c3c3 solid;
+}
+.searchnotfound-img{
+    margin-left: 15vw;
 }
