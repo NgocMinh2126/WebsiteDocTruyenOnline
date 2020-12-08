@@ -1,6 +1,6 @@
 <?php
 $controllers = array(
-  'page' => ['Admin','Dangky','Dangnhap'],
+  'page' => ['Admin','Dangky','Dangnhap', 'Quenmk', 'Chinhsach', 'Gioithieu', 'Lienhe', 'Trogiup'],
   'truyen' => ['index','Doctieuthuyet','Doctruyentranh','Tieuthuyet','Truyentranh','Truyendetail'],
 );
 include_once('controllers/' . $controller . '_controller.php');

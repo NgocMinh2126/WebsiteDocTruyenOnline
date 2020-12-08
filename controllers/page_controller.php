@@ -8,16 +8,53 @@ class PageController extends BaseController
   {
     $this->folder = 'page';
   }
-
-  function Dangky(){
-
+  public function Dangnhap()
+  {
+    $listUser = User::all();
+    $data = array(
+      'listUser' => $listUser,
+    );
+    $this->render('Dangnhap', $data);
   }
-
-  function Dangnhap(){
-    
+  public function Dangky()
+  {
+    $listUser = User::all();
+    $data = array(
+      'listUser' => $listUser,
+    );
+    $this->render('Dangky', $data);
   }
-
-  function Admin(){
-
+  public function Admin()
+  {
+    $data = array(1);
+    $this->render('Admin', $data);
+  }
+  public function Quenmk()
+  {
+    $listUser = User::all();
+    $data = array(
+      'listUser' => $listUser,
+    );
+    $this->render('Quenmk', $data);
+  }
+  public function Chinhsach()
+  {
+    $data = array(1);
+    $this->render('Chinhsach', $data);
+  }
+  public function Lienhe()
+  {
+    $data = array(1);
+    $this->render('Lienhe', $data);
+  }
+  public function Gioithieu()
+  {
+    $data = array(1);
+    $this->render('Gioithieu', $data);
+  }
+  public function Trogiup()
+  {
+    $data = array(1);
+    $this->render('Trogiup', $data);
   }
 }

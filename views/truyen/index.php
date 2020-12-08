@@ -28,7 +28,7 @@
             <a class="search-btn"><i class="fas fa-search"></i></a>
         </div>
         <div class="account-bar">
-            <a href="" class="menu-bar-btn">Đăng nhập</a>
+            <a href="?controller=page&action=Dangnhap" class="menu-bar-btn">Đăng nhập</a>
         </div>
     </header>
     <main>
@@ -245,10 +245,10 @@
             </a>
         </div>
         <div class="footer-menu">
-            <a href="#" class="footer-menu-btn">Liên hệ</a>
-            <a href="#" class="footer-menu-btn">Giới thiệu</a>
-            <a href="#" class="footer-menu-btn">Trợ giúp</a>
-            <a href="#" class="footer-menu-btn-special">Chính sách và quyền riêng tư</a>
+            <a href="?controller=page&action=Lienhe" class="footer-menu-btn">Liên hệ</a>
+            <a href="?controller=page&action=Gioithieu" class="footer-menu-btn">Giới thiệu</a>
+            <a href="?controller=page&action=Trogiup" class="footer-menu-btn">Trợ giúp</a>
+            <a href="?controller=page&action=Chinhsach" class="footer-menu-btn-special">Chính sách và quyền riêng tư</a>
         </div>
         <div class="footer-banquyen">
             © 2020 Bản quyền thuộc về Team TMT - MT Manga

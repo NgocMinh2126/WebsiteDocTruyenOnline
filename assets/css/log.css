@@ -6,7 +6,7 @@
 }
 
 html{
-    background:linear-gradient(to bottom,rgba(9, 36, 63, 0.8) 30%,rgba(34, 71, 70, 0.9)), url(/image/bg2.jpg);
+    background:linear-gradient(to bottom,rgba(9, 36, 63, 0.8) 30%,rgba(34, 71, 70, 0.9)), url(/TMTManga/assets/image/image/bg2.jpg);
     background-repeat: no-repeat;
     background-position: center;
     background-attachment: fixed;
@@ -42,13 +42,13 @@ html{
     border-radius: 10px;
 }
 
-.animate__animated{
+#logo{
     margin-top: 130px;
     margin-left: 70px;
     border-radius: 50%;
     width: 150px;
     height: 150px;
-    background: url(/image/mtlogo7.png);
+    background: url(/TMTManga/assets/image/image/mtlogo7.png);
     background-size: 100px, 100px; 
     background-repeat: no-repeat;
     background-position: center;
@@ -100,12 +100,17 @@ input:focus{
     color:  #5199eb;
 }
 
+#username::-webkit-outer-spin-button,
+#username::-webkit-inner-spin-button{
+    -webkit-appearance: none;
+}
+
 #err1
 {
     position: absolute;
     margin-top:-105px;
     margin-left: 400px;
-    visibility: hidden;
+    display: none;
 }
 
 #err1 i, #err2 i {
@@ -117,7 +122,7 @@ input:focus{
     position: absolute;
     margin-top:-40px;
     margin-left: 400px;
-    visibility: hidden;
+    display: none;
 }
 
 .fas{
@@ -172,7 +177,6 @@ input:focus{
     background-color: transparent;
 }
 
-
 .ntk{
     font-size: 12px;
     margin-top: 10px;
@@ -181,7 +185,7 @@ input:focus{
     color: #02457A;
 }
 
-.qmk{
+.btn-qmk{
     font-size: 12px;
     margin-left: 260px;
 }
@@ -243,4 +247,138 @@ a{
 
 a:hover{
     color: #4adad7;
+}
+/*PHAN QUEN MAT KHAU*/
+@import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap');
+.container{
+  margin: 2.7vw auto;
+  width:450px;
+    background-color: #c7f7f6;
+  text-align: center;
+  border-radius: 5px;
+  padding: 50px 35px 0px 60px;
+}
+.container h1{
+  width:40vw;
+  margin: 0px -7vw;
+  color: #02457A;
+  text-shadow: 5px 10px 10px rgba(16, 100, 168, 0.75),
+              -3px 10px 12px rgba(96, 139, 219, 0.4);
+  font-size: 33px;
+  font-weight: bold;
+  font-family: 'Pacifico', cursive;
+}
+.container h1:hover{
+  color: #4adad7;
+  text-shadow: 5px 10px 10px rgba(67, 213, 218, 0.8);
+}
+.container .form-outer{
+    width: 100%;
+    overflow: hidden;
+}
+.form-outer form{
+    display: flex;
+    width: 400%;
+  }
+.page{
+    width: 25%;
+    transition: margin-left 0.3s ease-in-out;
+  }
+.title{
+    text-align: left;
+    font-family: 'Poppins', sans-serif;
+    font-size: 25px;
+    font-weight: 500;
+  }
+.field{
+    width: 330px;
+    height: 45px;
+    margin: 45px 0;
+    display: flex;
+    position: relative;
+  }
+.label{
+    position: absolute;
+    top: -30px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+}
+.field input{
+    height: 100%;
+    width: 100%;
+    border: 1px solid#02457A;
+    border-radius: 5px;
+    padding-left: 15px;
+    font-size: 18px;
+  }
+.field button{
+    width: 100%;
+    margin-right: 5px;
+    height: 50px;
+    border: none;
+    background: #02457A;
+    margin-top: -20px;
+    border-radius: 5px;
+    color: #fff;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    transition: 0.5s ease;
+  }
+.field button:hover{
+    background-color:#4adad7;
+    color:  #02457A;
+    
+}
+.container .progress-bar{
+    display: flex;
+    margin: 40px 0;
+}
+.container .progress-bar .step{
+    text-align: center;
+    width: 100%;
+}
+.progress-bar .step .bullet{
+    height: 30px;
+    width: 30px;
+    border: 2px solid #02457A;
+    display: inline-block;
+    border-radius: 50%;
+    position: relative;
+    transition: 0.2s;
+    font-weight: 500;
+    font-size: 17px;
+}
+.progress-bar .step .bullet.active{
+    background-color:#4adad7;
+    border-color: #67e6e3;
+}
+.progress-bar .step .bullet.active span{
+    display: none;
+}
+.progress-bar .step .bullet:before,
+.progress-bar .step .bullet:after{
+    position: absolute;
+    content: '';   
+    bottom: 11px;
+    right: -140px;
+    height: 3px;
+    width: 130px;
+    background: #02457A;
+}
+.progress-bar .step .bullet.active:after{
+    background-color:#4adad7;
+    transform: scaleX(0);
+    transform-origin: left;
+    animation: animate 0.3s linear forwards;
+}
+@keyframes animate {
+    100%{
+      transform: scaleX(1);
+    }
+}
+.progress-bar .step:last-child .bullet:before,
+.progress-bar .step:last-child .bullet:after{
+    display: none;
 }
