@@ -182,5 +182,52 @@
             }
             return $list;
         }
-    }    
-?>
+static function deleteTruyen($idTruyen)
+    {
+        $db = DB::getInstance();
+        $req = $db->query('DELETE FROM truyen WHERE IDTruyen =' . $idTruyen);
+        return $req;
+    }
+    static function deleteChuong($idTruyen)
+    {
+        $db = DB::getInstance();
+        $req = $db->query('DELETE FROM chuong WHERE IDTruyen =' . $idTruyen);
+        return $req;
+    }
+    static function deleteTheLoaiTruyen($idTruyen)
+    {
+        $db = DB::getInstance();
+        $req = $db->query('DELETE FROM theloaitruyen WHERE IDTruyen =' . $idTruyen);
+        return $req;
+    }
+     static function insert($tenTruyen, $moTa, $anhBia, $tinhTrang, $idTacGia, $loaiTruyen)
+        {
+            $today = date("Y/m/d");
+            echo $today;
+            echo "them roi";
+            $db = DB::getInstance();
+            $str = "INSERT INTO  truyen (`IDTruyen`, `TenTruyen`, `MoTa`, `SoChuong`, `AnhBia`, `LuotLike`, `TinhTrang`, `IDTacGia`, `LoaiTruyen`, `NgayDang`) VALUES(NULL,'" . $tenTruyen . "','" . $moTa . "',0,'" . $anhBia . "',0,'" . $tinhTrang . "'," . $idTacGia . "," . $loaiTruyen . ",'" . $today . "')";
+            echo ($str);
+            $sql = $db->query($str);
+            //return $sql;
+        }
+    static function idmax(){        
+            $db=DB::getInstance();
+            $query=$db->query("SELECT MAX(IDTruyen) as A FROM truyen");
+            $item=$query->fetch();
+            $id=$item['A'];
+            return $id;
+    }
+    static function updateTruyen($idTruyen,$tenTruyen,$tinhTrang,$idTacGia,$anhBia){
+        $db=DB::getInstance();
+        $str="UPDATE truyen SET TenTruyen='".$tenTruyen."',AnhBia='".$anhBia."',TinhTrang='".$tinhTrang."',IDTacGia=".$idTacGia."WHERE IDTruyen=".$idTruyen;
+        echo($str);
+        $query=$db->query($str);        
+    }
+    static function updateTruyen2($idTruyen,$tenTruyen,$tinhTrang,$idTacGia){
+        $db=DB::getInstance();
+        $str="UPDATE truyen SET TenTruyen='".$tenTruyen."' , TinhTrang='".$tinhTrang."', IDTacGia=".$idTacGia." WHERE IDTruyen=".$idTruyen;
+        echo($str);
+        $query=$db->query($str);        
+    }
+    }

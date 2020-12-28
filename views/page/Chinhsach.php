@@ -21,9 +21,14 @@
             <button class="search-btn"><i class="fas fa-search"></i></button>
         </div>
         <div class="account-bar">
-            <a href="?controller=page&action=Dangnhap" class="menu-bar-btn">Đăng nhập</a>
+            <a href="?controller=page&action=Dangnhap" class="menu-bar-btn" id="login"">Đăng nhập</a>
         </div>
     </header>
+    <script>
+        document.getElementById("login").textContent = "<?php session_start();
+                                                        echo $_SESSION['hoTen']; ?>";
+        document.getElementById("login").setAttribute("href", "");
+    </script>
     <main>
         <h1>Chính sách và quyền riêng tư</h1>
         <p>Xin vui lòng đọc bản chính sách bảo mật dưới đây để hiểu hơn những cam kết mà chúng tôi thực hiện nhằm tôn trọng và bảo vệ quyền lợi của bạn.</p>

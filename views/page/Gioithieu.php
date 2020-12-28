@@ -26,9 +26,14 @@
             <button class="search-btn"><i class="fas fa-search"></i></button>
         </div>
         <div class="account-bar">
-            <a href="?controller=page&action=Dangnhap" class="menu-bar-btn">Đăng nhập</a>
+            <a href="?controller=page&action=Dangnhap" class="menu-bar-btn" id="login"">Đăng nhập</a>
         </div>
     </header>
+    <script>
+        document.getElementById("login").textContent = "<?php session_start();
+                                                        echo $_SESSION['hoTen']; ?>";
+        document.getElementById("login").setAttribute("href", "");
+    </script>
     <main>
         <h1>Giới thiệu về chúng tôi</h1>
         <p>Hiện nay, có không ít các trang truyện cung cấp cho bạn thế giới đọc truyện đa dạng. Thế nhưng, nếu bạn muốn

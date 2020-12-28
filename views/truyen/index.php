@@ -28,9 +28,14 @@
             <a class="search-btn"><i class="fas fa-search"></i></a>
         </div>
         <div class="account-bar">
-            <a href="?controller=page&action=Dangnhap" class="menu-bar-btn">Đăng nhập</a>
+            <a href="?controller=page&action=Dangnhap" class="menu-bar-btn" id="login"">Đăng nhập</a>
         </div>
     </header>
+    <script>
+        document.getElementById("login").textContent = "<?php session_start();
+                                                        echo $_SESSION['hoTen']; ?>";
+        document.getElementById("login").setAttribute("href", "");
+    </script>
     <main>
         <div class="main-slide">
             <div class="left-slide">

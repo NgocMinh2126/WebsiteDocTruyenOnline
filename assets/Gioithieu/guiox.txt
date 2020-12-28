@@ -1,0 +1,77 @@
+<div class="main-morong-dsachchuong">
+                <div class="main-morong-title">
+                    <i class="fas fa-star-and-crescent"></i>
+                    Danh sách chương
+                    <button class="sapxepchuong-btn"><i class="fas fa-sort"></i></button>
+                </div>
+                <div class="main-morong-chuong-container">
+                    <div class="main-morong-chuong">
+                        <div class="chuong-contain">
+                            <a href="#">Chương 3</a>
+                            <div>11/11/2019</div>
+                        </div>
+                    </div>
+                    <div class="main-morong-chuong">
+                        <div class="chuong-contain">
+                            <a href="#">Chương 2</a>
+                            <div>11/11/2019</div>
+                        </div>
+                    </div>
+                    <div class="main-morong-chuong">
+                        <div class="chuong-contain">
+                            <a href="#">Chương 1</a>
+                            <div>11/11/2019</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+.main-morong-dsachchuong{
+    margin-left: 3vw;
+    width: 60vw;
+}
+.main-morong-title{
+    padding: 10px 10px 10px 10px;
+    font-family: 'Merriweather', serif;
+    font-weight: 600;
+    font-size: 20px;
+    border-bottom: 1.5px #c3c3c3 solid;
+    margin-bottom: 2rem;
+}
+.main-morong-title>i{
+    color: #34c2d1;
+}
+.sapxepchuong-btn{
+    margin-left: 20px;
+    border: none;
+    outline: none;
+    background-color: transparent;
+    font-size: 20px;
+}
+.main-morong-chuong{
+    padding-left: 2rem ;
+    border-left: 3px solid #03adaa;
+    height: 2rem;
+    line-height: 2rem;
+}
+.chuong-contain{
+    display: flex;
+    border-bottom: 1px solid #a1c2c1;
+    width: 55vw;
+    justify-content: space-between;
+    color: #0f4d4b;
+}
+.chuong-contain>a{
+    text-decoration: none;
+    font-size: 20px;
+    color: #0f4d4b;
+}
+.chuong-contain>a:hover{
+    color: #34c2d1;
+}
+
+const Sapxepchuong_btn=document.querySelector(".sapxepchuong-btn");
+Sapxepchuong_btn.addEventListener('click',function(){
+    
+})

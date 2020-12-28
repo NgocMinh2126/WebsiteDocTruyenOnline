@@ -77,8 +77,8 @@ if (isset($_POST['btn_dangnhap'])) {
     for ($i = 0; $i < count($listUser); $i++) {
         $User = $listUser[$i];
         if (($User->idUser) == $idUser && ($User->password) == $password) {
-            echo "vao duoc vong if";
-            $_SESSION['idUser'] = $idUser; //luu idUser vao session de xu ly sau nay
+            $hoTen = $User->hoTen;
+            $_SESSION['hoTen'] = $hoTen; //luu hoTen vao session de xu ly sau nay
             if ($User->idUser == 1) {
                 header('Location: ?controller=page&action=Admin');
             } else {

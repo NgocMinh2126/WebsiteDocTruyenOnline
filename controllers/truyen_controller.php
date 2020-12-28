@@ -5,6 +5,7 @@ require_once('models/TacGia.php');
 require_once('models/TheLoai.php');
 require_once('models/TheLoaiTruyen.php');
 require_once('models/Chuong.php');
+require_once('models/User.php');
 
 class TruyenController extends BaseController
 {
@@ -20,12 +21,14 @@ class TruyenController extends BaseController
         $listTruyenMoi = Truyen:: getTruyenMoi();
         $listTacGia= TacGia::getTacGia();
         $listTheLoai= TheLoai::getTheLoai();
+        $listUser= User::all();
         $data=array (
             'listTruyenTranh'=>$listTruyenTranh,
             'listTieuThuyet'=>$listTieuThuyet,
             'listTruyenMoi'=>$listTruyenMoi,
             'listTacGia'=>$listTacGia,
             'listTheLoai'=>$listTheLoai,
+            'listUser'=>$listUser,
         ); //tuong tu object
         $this->render('index',$data);        
     }
@@ -110,6 +113,19 @@ class TruyenController extends BaseController
             'listChuong'=>$listChuong,
         );
         $this->render('Doctruyentranh',$data);
+    }
+    public function Doctieuthuyet($idTruyen){
+        $truyen = Truyen :: getTruyenID($idTruyen);
+        $listTheLoai = TheLoai::getTheLoai();
+        $listTheLoaiTruyen= TheLoaiTruyen::getTheLoaiTruyen($idTruyen);
+        $listChuong = Chuong::getChuong($idTruyen);
+        $data = array(
+            'truyen'=>$truyen,
+            'listTheLoai'=>$listTheLoai,
+            'listTheLoaiTruyen'=>$listTheLoaiTruyen,
+            'listChuong'=>$listChuong,
+        );
+        $this->render('Doctieuthuyet',$data);
     }
     public function Search($search){
         $listTruyen= Truyen::getTruyenMoi();

@@ -1,0 +1,63 @@
+<form method="POST" enctype="multipart/form-data">
+                        <label class="form-title">Giới thiệu</label>
+                        <input type="file" name="gioithieu"><br>
+                        <label class="form-title">Ảnh</label>
+                        <input type="file" name="fileUpload" id="fileUpload">
+                        <input type="submit" name="submit"><br>
+</form>
+
+<?php
+                    //kiem tra neu form da submit chua
+                    if (isset($_POST["submit"])) {
+                        $error = [];
+                        $errorMT = [];
+                        //---load mo ta---
+                        $target_dirMT = 'loadMoTa/';
+                        $target_fileMT = $target_dirMT . basename($_FILES['gioithieu']['name']);
+                        if ($_FILES['gioithieu']['size'] > 5242880) {
+                            $errorMT[] = "chỉ được upload file txt dưới 5mb";
+                        }
+                        $file_styleMT = pathinfo($_FILES['gioithieu']['name'], PATHINFO_EXTENSION);
+                        $file_style_allowMT = array('txt');
+                        if (!in_array(strtolower($file_styleMT), $file_style_allowMT)) {
+                            $errorMT[] = "chỉ được upload file ảnh";
+                        }
+                        if (file_exists($target_fileMT)) {
+                            $errorMT[] = "file đã tồn tại trên hệ thống!";
+                        }
+                        if (empty($errorMT)) {
+                            if (move_uploaded_file($_FILES['gioithieu']['tmp_name'], $target_fileMT)) {
+                                // echo "thành công";
+                                echo 'src="' . $target_dirMT . basename($_FILES['gioithieu']['name']) . '"<br>';
+                            }
+                        } else {
+                            for ($i = 0; $i < count($errorMT); $i++) {
+                                echo $errorMT[$i];
+                            }
+                        }
+                        //---load anh---
+                        $target_dir = 'loadPicture/';
+                        $target_file = $target_dir . basename($_FILES['fileUpload']['name']);
+                        if ($_FILES['fileUpload']['size'] > 5242880) {
+                            $error[] = "chỉ được upload file dưới 5mb";
+                        }
+                        $file_style = pathinfo($_FILES['fileUpload']['name'], PATHINFO_EXTENSION);
+                        $file_style_allow = array('jpg', 'png', 'jpeg', 'gif');
+                        if (!in_array(strtolower($file_style), $file_style_allow)) {
+                            $error[] = "chỉ được upload ảnh";
+                        }
+                        if (file_exists($target_file)) {
+                            $error[] = "file đã tồn tại trên hệ thống!";
+                        }
+                        if (empty($error)) {
+                            if (move_uploaded_file($_FILES['fileUpload']['tmp_name'], $target_file)) {
+                                //echo "Bạn update thành công";
+                                echo '<br/><img src="' . $target_dir . basename($_FILES['fileUpload']['name']) . '" width="160" />';
+                            }
+                        } else {
+                            for ($i = 0; $i < count($error); $i++) {
+                                echo $error[$i];
+                            }
+                        }
+                    }
+                    ?>

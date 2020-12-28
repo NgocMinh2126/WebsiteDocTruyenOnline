@@ -1,0 +1,5 @@
+- Bước 1 tìm file vcpkg trong máy
+cd {path}\vcpkg\ports\rockdb (cmd)
+Bước 2:
+cmd gõ: set(VCPKG_LIBRARY_LINKAGG static)
+cmd gõ: VCPKG install rocksdb: 64-windows

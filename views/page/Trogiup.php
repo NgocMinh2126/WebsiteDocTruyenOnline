@@ -22,9 +22,14 @@
             <button class="search-btn"><i class="fas fa-search"></i></button>
         </div>
         <div class="account-bar">
-            <a href="?controller=page&action=Dangnhap" class="menu-bar-btn">Đăng nhập</a>
+            <a href="?controller=page&action=Dangnhap" class="menu-bar-btn" id="login"">Đăng nhập</a>
         </div>
     </header>
+    <script>
+        document.getElementById("login").textContent = "<?php session_start();
+                                                        echo $_SESSION['hoTen']; ?>";
+        document.getElementById("login").setAttribute("href", "");
+    </script>
     <main>
         <h1>Trợ giúp</h1>
         <p>Nội dung trên website của chúng tôi đều được thu thập và xây dựng dựa trên các nguồn tài nguyên truyện miễn
