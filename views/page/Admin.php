@@ -408,7 +408,7 @@
         var listtheloai = document.querySelector("#theloaiedit-ip");
         var listtinhtrang = document.querySelector("#tinhtrang-ip");
         var listtacgia2 = document.querySelector("#tentg-ip2");
-        for (let i = 0; i < sua_btn.length; i++) {
+        for (let i = 0; i < edit_btn.length; i++) {
             edit_btn[i].addEventListener('click', function() {
                 update_idTruyen = truyen[i].idTruyen;
                 console.log("helo");
